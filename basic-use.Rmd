@@ -6,12 +6,12 @@ level.
 There are four steps to run all the validation tests in `autovalid`.
 
 1. Load the necessary libraries.
-  - These libraries are `readxl` and `autovalid`.
+    - These libraries are `readxl` and `autovalid`.
 2. Load the raw data and save the path to the zip files.
-  - The zip files are NOT loaded. Only save the path.
+    - The zip files are NOT loaded. Only save the path.
 3. Use the `prep_data()` function from `autovalid` to create the object that will be used for validation.
 4. Run the `autovalid()` function on the output of `prep_data()`.
-  - Make sure to save the output to an object.
+    - Make sure to save the output to an object.
   
 The output of the function `autovalid()` contains the results of all the validation tests.
 
