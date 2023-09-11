@@ -1,3 +1,9 @@
 package-guide-overview
-a-caucus-race-and-a-long-tale
 basic-use
+timer-checks
+understanding-the-four-timers
+timer1
+timer2
+timer3
+timer4
+time-of-day

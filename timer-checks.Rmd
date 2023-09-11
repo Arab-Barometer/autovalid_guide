@@ -1,0 +1,49 @@
+# (PART) Types of Checks {-}
+# Timer Checks
+
+The `autovalid()` function performs ten checks related to time and gives an overall score. The results are in the columns:
+
+- **`CHECK_TIMER1_AFTER_9AM`**
+- **`CHECK_TIMER1_BEFORE_8PM`**
+- **`CHECK_TIMER1_ABOVE_MIN`**
+- **`CHECK_TIMER1_BELOW_MAX`**
+- **`CHECK_TIMER2_ABOVE_MIN`**
+- **`CHECK_TIMER2_BELOW_MAX`**
+- **`CHECK_TIMER3_ABOVE_MIN`**
+- **`CHECK_TIMER3_BELOW_MAX`**
+- **`CHECK_TIMER4_ABOVE_MIN`**
+- **`CHECK_TIMER4_BELOW_MAX`**
+- **`SCORE_TIMER`**
+
+## Understanding the Four Timers
+
+`autovalid()` uses four different measures of time to calculate the length of a survey. These timers are called" `TIMER1`, `TIMER2`, `TIMER3`, and `TIMER4`.
+
+### `TIMER1`
+
+`TIMER1` is calculated from the `start` and `end` time recorded in the survey.
+These times are found in the raw data.
+
+The other three timers are all calculated from the audit files.
+
+### `TIMER2`
+
+`TIMER2` is calculated using the last recorded `start` and first recorded `start` in the associated interview's audit file. 
+
+All elements in an audit file have a `start` value, but not all have an `end` value, so that is why only values from the `start` column are used.
+
+### `TIMER3`
+
+`TIMER3` is calculated using the sum of the time spent on each page of the survey, according to the audit file.
+
+Once the survey and audit file timers start, they do not stop. If an interviewer leaves a survey and returns to it the duration of the survey may appear longer than it actually was. This timer does not include such pauses.
+
+### `TIMER4`
+
+`TIMER4` is calculated using the sum of the time spent on each page of the survey for questions that are between the first and last substantive question.
+
+By default, the first substantive question is set to `"Q2061A"` and the last substantive question is determined as the last question that begins with `"Q"`.
+
+## Time of Day
+
+`autovalid()` uses the time recorded in the 
