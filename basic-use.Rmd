@@ -1,0 +1,40 @@
+# Basic Use
+
+This chapter sheds light on how to use the `autovalid` package at the most basic
+level.
+
+There are four steps to run all the validation tests in `autovalid`.
+
+1. Load the necessary libraries.
+  - These libraries are `readxl` and `autovalid`.
+2. Load the raw data and save the path to the zip files.
+  - The zip files are NOT loaded. Only save the path.
+3. Use the `prep_data()` function from `autovalid` to create the object that will be used for validation.
+4. Run the `autovalid()` function on the output of `prep_data()`.
+  - Make sure to save the output to an object.
+  
+The output of the function `autovalid()` contains the results of all the validation tests.
+
+Ultimately, if you follow the four steps, your code should follow the example of the following code block:
+
+```{r basic-use-1,eval=FALSE}
+
+     #.........................Load Libraries.........................
+library(readxl)
+library(autovalid)
+
+     #......................Load data and paths.......................
+raw_country_data <- read_xls("path/to/raw/data.xlsx")
+audit_files <- "path/to/audits.zip"
+
+     #..........................Prep the data.........................
+prepped_data <- prep_data(raw_country_data,
+                          audit_files)
+
+     #..........................Run autovalid.........................
+validation_output <- autovalid(prepped_data)
+
+```
+
+
+Now that we have the results, we need to know how to understand them. A majority of the rest of the guide is dedicated to explaining the output of the `autovalid()` function.
