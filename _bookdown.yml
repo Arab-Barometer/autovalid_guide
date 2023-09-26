@@ -8,5 +8,5 @@ language:
     chapter_name: "Chapter "
 rmd_files: ["index.Rmd",
             "basic-use.Rmd",
-            "understanding_output.Rmd"
-            "tiemr-checks.Rmd"]
+            "understanding_output.Rmd",
+            "timer-checks.Rmd"]
