@@ -1,6 +1,6 @@
 # (PART) Validation Test Categories {-}
 
-# Timer Checks
+# Timer Checks {#timer-checks}
 
 The `autovalid()` function performs ten checks related to time and gives an overall score. The results are in the columns:
 
@@ -81,7 +81,7 @@ There are **four** arguments in `autovalid()` that can be used to change the def
   - Associated with `CHECK_TIMERN_BELOW_MAX`, where `N` is 1 through 4.
 
 
-The following is an example of changing the defaults in `autovalid()` for the timer checks. The object `prepped_data` is the output of the `prep_data()` function. See [Chapter 2](basic-use) for a refresher.
+The following is an example of changing the defaults in `autovalid()` for the timer checks. The object `prepped_data` is the output of the `prep_data()` function. See [Chapter 2](#basic-use) for a refresher.
 
 ```{r timer-check-1,eval=FALSE}
 
@@ -93,3 +93,11 @@ autovalid(prepped_data,
           )
 
 ```
+
+## Result Columns
+
+There are an additional six column that are related to the timer checks that can be thought of as the "result columns". They are `TIMER1`, `TIMER2`, `TIMER3`, `TIMER4`, `COUNT_ABOVE_MIN` and `COUNT_BELOW_MAX`.
+
+The first four simply record the time of the interview determined by each timer described in the sections above.
+
+The variables `COUNT_ABOVE_MIN` and `COUNT_BELOW_MAX` record the number of timers that pass the minimum and maximum length requirements, respectively.
