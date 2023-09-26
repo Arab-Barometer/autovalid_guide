@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Basic Use | autovalid package guide</title>
-  <meta name="description" content="Chapter 2 Basic Use | autovalid package guide" />
+  <title>Chapter 6 Variance Checks | autovalid package guide</title>
+  <meta name="description" content="Chapter 6 Variance Checks | autovalid package guide" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Basic Use | autovalid package guide" />
+  <meta property="og:title" content="Chapter 6 Variance Checks | autovalid package guide" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Basic Use | autovalid package guide" />
+  <meta name="twitter:title" content="Chapter 6 Variance Checks | autovalid package guide" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="output-overview.html"/>
+<link rel="prev" href="timer-checks.html"/>
+<link rel="next" href="missingness-checks.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -206,55 +206,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basic-use" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Basic Use<a href="basic-use.html#basic-use" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This chapter sheds light on how to use the <code>autovalid</code> package at the most basic
-level.</p>
-<p>There are four steps to run all the validation tests in <code>autovalid</code>.</p>
-<ol style="list-style-type: decimal">
-<li>Load the necessary libraries.
+<div id="varaince-checks" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Variance Checks<a href="varaince-checks.html#varaince-checks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The tests are also known as “straightlining” checks.</p>
+<p>The <code>autovalid()</code> function checks whether the enumerator entered the same answer for all questions that appear on a page. This is particularly relevant to batteries, also known as grids. The resulting columns follow the naming pattern</p>
 <ul>
-<li>These libraries are <code>readxl</code> and <code>autovalid</code>.</li>
-</ul></li>
-<li>Load the raw data and save the path to the zip files.
-<ul>
-<li>The zip files are NOT loaded. Only save the path.</li>
-</ul></li>
-<li>Use the <code>prep_data()</code> function from <code>autovalid</code> to create the object that will be used for validation.</li>
-<li>Run the <code>autovalid()</code> function on the output of <code>prep_data()</code>.
-<ul>
-<li>Make sure to save the output to an object.</li>
-</ul></li>
-</ol>
-<p>The output of the function <code>autovalid()</code> contains the results of all the validation tests.</p>
-<p>Ultimately, if you follow the four steps, your code should follow the example of the following code block:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="basic-use.html#cb1-1" aria-hidden="true" tabindex="-1"></a>     <span class="co">#.........................Load Libraries.........................</span></span>
-<span id="cb1-2"><a href="basic-use.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-3"><a href="basic-use.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(autovalid)</span>
-<span id="cb1-4"><a href="basic-use.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="basic-use.html#cb1-5" aria-hidden="true" tabindex="-1"></a>     <span class="co">#......................Load data and paths.......................</span></span>
-<span id="cb1-6"><a href="basic-use.html#cb1-6" aria-hidden="true" tabindex="-1"></a>raw_country_data <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">&quot;path/to/raw/data.xlsx&quot;</span>)</span>
-<span id="cb1-7"><a href="basic-use.html#cb1-7" aria-hidden="true" tabindex="-1"></a>audit_files <span class="ot">&lt;-</span> <span class="st">&quot;path/to/audits.zip&quot;</span></span>
-<span id="cb1-8"><a href="basic-use.html#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="basic-use.html#cb1-9" aria-hidden="true" tabindex="-1"></a>     <span class="co">#..........................Prep the data.........................</span></span>
-<span id="cb1-10"><a href="basic-use.html#cb1-10" aria-hidden="true" tabindex="-1"></a>prepped_data <span class="ot">&lt;-</span> <span class="fu">prep_data</span>(raw_country_data,</span>
-<span id="cb1-11"><a href="basic-use.html#cb1-11" aria-hidden="true" tabindex="-1"></a>                          audit_files)</span>
-<span id="cb1-12"><a href="basic-use.html#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="basic-use.html#cb1-13" aria-hidden="true" tabindex="-1"></a>     <span class="co">#..........................Run autovalid.........................</span></span>
-<span id="cb1-14"><a href="basic-use.html#cb1-14" aria-hidden="true" tabindex="-1"></a>validation_output <span class="ot">&lt;-</span> <span class="fu">autovalid</span>(prepped_data)</span></code></pre></div>
-<p>Now that we have the results, we need to know how to understand them. A majority of the rest of the guide is dedicated to explaining the output of the <code>autovalid()</code> function.</p>
+<li><strong><code>CHECK_QXX_VARIES</code></strong></li>
+</ul>
+<p>where <code>QXX</code> is the root of the question battery/grid.</p>
+<p>For example, to see whether a interview contains the same answer for every question in the <code>Q204</code> battery, look to the variable <code>CHECK_Q204_VARIES</code>.</p>
+<div id="score_vary" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> <code>SCORE_VARY</code><a href="varaince-checks.html#score_vary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>SCORE_VARY</code> variable calculates the mean of all the <code>CHECK_QXX_VARIES</code> variables. The higher <code>SCORE_VARY</code> is, the fewer batteries are straightlined. The lower <code>SOCRE_VARY</code>, the more batteries contain all the same result (by individual battery).</p>
+</div>
+<div id="result-columns-1" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Result Columns<a href="varaince-checks.html#result-columns-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For each battery checked resulting in a <code>CHECK_QXX_VARIES</code> column, there is a <code>QXX_RESPONSE</code> column. If responses to the <code>QXX</code> battery vary, <code>QXX_RESPONSE</code> is <code>NA</code>. Otherwise, <code>QXX_RESPONSE</code> records the response used for every question in the battery.</p>
+<p>For example, if the same answer was recorded for every question in the <code>Q204</code> battery, that answer would be recorded in <code>Q204_RESPONSE</code>.</p>
 
 </div>
-
-
-
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="output-overview.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="timer-checks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="missingness-checks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -285,7 +263,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/basic-use.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/variance-checks.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -293,7 +271,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/basic-use.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/variance-checks.Rmd",
 "text": null
 },
 "download": null,

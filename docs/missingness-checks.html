@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Basic Use | autovalid package guide</title>
-  <meta name="description" content="Chapter 2 Basic Use | autovalid package guide" />
+  <title>Chapter 7 Missingness Checks | autovalid package guide</title>
+  <meta name="description" content="Chapter 7 Missingness Checks | autovalid package guide" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Basic Use | autovalid package guide" />
+  <meta property="og:title" content="Chapter 7 Missingness Checks | autovalid package guide" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Basic Use | autovalid package guide" />
+  <meta name="twitter:title" content="Chapter 7 Missingness Checks | autovalid package guide" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="output-overview.html"/>
+<link rel="prev" href="varaince-checks.html"/>
+<link rel="next" href="percent-match.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -206,55 +206,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basic-use" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Basic Use<a href="basic-use.html#basic-use" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This chapter sheds light on how to use the <code>autovalid</code> package at the most basic
-level.</p>
-<p>There are four steps to run all the validation tests in <code>autovalid</code>.</p>
-<ol style="list-style-type: decimal">
-<li>Load the necessary libraries.
+<div id="missingness-checks" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Missingness Checks<a href="missingness-checks.html#missingness-checks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The <code>autovalid()</code> function checks the level of missingness at both the interview- and enumerator-level. The result of the test is in:</p>
 <ul>
-<li>These libraries are <code>readxl</code> and <code>autovalid</code>.</li>
-</ul></li>
-<li>Load the raw data and save the path to the zip files.
-<ul>
-<li>The zip files are NOT loaded. Only save the path.</li>
-</ul></li>
-<li>Use the <code>prep_data()</code> function from <code>autovalid</code> to create the object that will be used for validation.</li>
-<li>Run the <code>autovalid()</code> function on the output of <code>prep_data()</code>.
-<ul>
-<li>Make sure to save the output to an object.</li>
-</ul></li>
-</ol>
-<p>The output of the function <code>autovalid()</code> contains the results of all the validation tests.</p>
-<p>Ultimately, if you follow the four steps, your code should follow the example of the following code block:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="basic-use.html#cb1-1" aria-hidden="true" tabindex="-1"></a>     <span class="co">#.........................Load Libraries.........................</span></span>
-<span id="cb1-2"><a href="basic-use.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-3"><a href="basic-use.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(autovalid)</span>
-<span id="cb1-4"><a href="basic-use.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="basic-use.html#cb1-5" aria-hidden="true" tabindex="-1"></a>     <span class="co">#......................Load data and paths.......................</span></span>
-<span id="cb1-6"><a href="basic-use.html#cb1-6" aria-hidden="true" tabindex="-1"></a>raw_country_data <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">&quot;path/to/raw/data.xlsx&quot;</span>)</span>
-<span id="cb1-7"><a href="basic-use.html#cb1-7" aria-hidden="true" tabindex="-1"></a>audit_files <span class="ot">&lt;-</span> <span class="st">&quot;path/to/audits.zip&quot;</span></span>
-<span id="cb1-8"><a href="basic-use.html#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="basic-use.html#cb1-9" aria-hidden="true" tabindex="-1"></a>     <span class="co">#..........................Prep the data.........................</span></span>
-<span id="cb1-10"><a href="basic-use.html#cb1-10" aria-hidden="true" tabindex="-1"></a>prepped_data <span class="ot">&lt;-</span> <span class="fu">prep_data</span>(raw_country_data,</span>
-<span id="cb1-11"><a href="basic-use.html#cb1-11" aria-hidden="true" tabindex="-1"></a>                          audit_files)</span>
-<span id="cb1-12"><a href="basic-use.html#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="basic-use.html#cb1-13" aria-hidden="true" tabindex="-1"></a>     <span class="co">#..........................Run autovalid.........................</span></span>
-<span id="cb1-14"><a href="basic-use.html#cb1-14" aria-hidden="true" tabindex="-1"></a>validation_output <span class="ot">&lt;-</span> <span class="fu">autovalid</span>(prepped_data)</span></code></pre></div>
-<p>Now that we have the results, we need to know how to understand them. A majority of the rest of the guide is dedicated to explaining the output of the <code>autovalid()</code> function.</p>
+<li><code>CHECK_MISS_IND</code></li>
+</ul>
+<p>A response is considered “missing” if it is coded as <code>98</code>, <code>99</code>, or <code>100</code>. The missingness of an interview is calculated by the total number of missing responses divided by the total responses recorded. Only variables beginning with <code>Q</code> are counted. The variable <code>CHECK_MIS_IND</code> reports whether the percent of missing responses is below 15%.</p>
+<div id="changing-defualts" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Changing Defualts<a href="missingness-checks.html#changing-defualts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>By default, <code>autovalid()</code> checks if the rate of missingness in an interview is below 15%. This can be changed with the argument <code>thresh_mis_row</code> using a numeric value between 0 and 1.</p>
+<p>The following is an example of changing the defaults in <code>autovalid()</code> for the missingness check. The object <code>prepped_data</code> is the output of the <code>prep_data()</code> function. See <a href="basic-use.html#basic-use">Chapter 2</a> for a refresher.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="missingness-checks.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autovalid</span>(prepped_data,</span>
+<span id="cb3-2"><a href="missingness-checks.html#cb3-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">thresh_mis_row =</span> .<span class="dv">30</span> <span class="co"># Are more than 30% of answers 98/99/100?</span></span>
+<span id="cb3-3"><a href="missingness-checks.html#cb3-3" aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div>
+</div>
+<div id="result-columns-2" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Result Columns<a href="missingness-checks.html#result-columns-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There is also a column that reports the percent missing for that interview. The column is called <code>PCT_MISS</code>.</p>
 
 </div>
-
-
-
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="output-overview.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="varaince-checks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="percent-match.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -285,7 +264,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/basic-use.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/missingness-checks.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -293,7 +272,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/basic-use.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/missingness-checks.Rmd",
 "text": null
 },
 "download": null,

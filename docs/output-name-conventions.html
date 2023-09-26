@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Basic Use | autovalid package guide</title>
-  <meta name="description" content="Chapter 2 Basic Use | autovalid package guide" />
+  <title>Chapter 4 Output Name Conventions | autovalid package guide</title>
+  <meta name="description" content="Chapter 4 Output Name Conventions | autovalid package guide" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Basic Use | autovalid package guide" />
+  <meta property="og:title" content="Chapter 4 Output Name Conventions | autovalid package guide" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Basic Use | autovalid package guide" />
+  <meta name="twitter:title" content="Chapter 4 Output Name Conventions | autovalid package guide" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="output-overview.html"/>
+<link rel="prev" href="output-overview.html"/>
+<link rel="next" href="timer-checks.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -206,44 +206,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basic-use" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Basic Use<a href="basic-use.html#basic-use" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This chapter sheds light on how to use the <code>autovalid</code> package at the most basic
-level.</p>
-<p>There are four steps to run all the validation tests in <code>autovalid</code>.</p>
-<ol style="list-style-type: decimal">
-<li>Load the necessary libraries.
-<ul>
-<li>These libraries are <code>readxl</code> and <code>autovalid</code>.</li>
-</ul></li>
-<li>Load the raw data and save the path to the zip files.
-<ul>
-<li>The zip files are NOT loaded. Only save the path.</li>
-</ul></li>
-<li>Use the <code>prep_data()</code> function from <code>autovalid</code> to create the object that will be used for validation.</li>
-<li>Run the <code>autovalid()</code> function on the output of <code>prep_data()</code>.
-<ul>
-<li>Make sure to save the output to an object.</li>
-</ul></li>
-</ol>
-<p>The output of the function <code>autovalid()</code> contains the results of all the validation tests.</p>
-<p>Ultimately, if you follow the four steps, your code should follow the example of the following code block:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="basic-use.html#cb1-1" aria-hidden="true" tabindex="-1"></a>     <span class="co">#.........................Load Libraries.........................</span></span>
-<span id="cb1-2"><a href="basic-use.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-3"><a href="basic-use.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(autovalid)</span>
-<span id="cb1-4"><a href="basic-use.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="basic-use.html#cb1-5" aria-hidden="true" tabindex="-1"></a>     <span class="co">#......................Load data and paths.......................</span></span>
-<span id="cb1-6"><a href="basic-use.html#cb1-6" aria-hidden="true" tabindex="-1"></a>raw_country_data <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">&quot;path/to/raw/data.xlsx&quot;</span>)</span>
-<span id="cb1-7"><a href="basic-use.html#cb1-7" aria-hidden="true" tabindex="-1"></a>audit_files <span class="ot">&lt;-</span> <span class="st">&quot;path/to/audits.zip&quot;</span></span>
-<span id="cb1-8"><a href="basic-use.html#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="basic-use.html#cb1-9" aria-hidden="true" tabindex="-1"></a>     <span class="co">#..........................Prep the data.........................</span></span>
-<span id="cb1-10"><a href="basic-use.html#cb1-10" aria-hidden="true" tabindex="-1"></a>prepped_data <span class="ot">&lt;-</span> <span class="fu">prep_data</span>(raw_country_data,</span>
-<span id="cb1-11"><a href="basic-use.html#cb1-11" aria-hidden="true" tabindex="-1"></a>                          audit_files)</span>
-<span id="cb1-12"><a href="basic-use.html#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="basic-use.html#cb1-13" aria-hidden="true" tabindex="-1"></a>     <span class="co">#..........................Run autovalid.........................</span></span>
-<span id="cb1-14"><a href="basic-use.html#cb1-14" aria-hidden="true" tabindex="-1"></a>validation_output <span class="ot">&lt;-</span> <span class="fu">autovalid</span>(prepped_data)</span></code></pre></div>
-<p>Now that we have the results, we need to know how to understand them. A majority of the rest of the guide is dedicated to explaining the output of the <code>autovalid()</code> function.</p>
+<div id="output-name-conventions" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Output Name Conventions<a href="output-name-conventions.html#output-name-conventions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>When exploring the output of <code>autovalid()</code>, you will see many variables that beging with <code>CHECK_</code> or <code>SCORE_</code>. These prefixes tell you a bit about the variable.</p>
+<div id="check_-variables" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> <code>CHECK_</code> Variables<a href="output-name-conventions.html#check_-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Variables that begin with the prefix <code>CHECK_</code> are logicals, meaning the entire column is <code>TRUE</code>, <code>FALSE</code>, or occasionally <code>NA</code>.</p>
+<p>The question the variable is asking is “Is this check passed?” If the result is <code>TRUE</code>, the check is passed. If the result is <code>FALSE</code>, the check is failed. Interviews, enumerators, or supervisors flagged by <code>autovalid()</code> will have a lot of <code>FALSE</code> results.</p>
+<p>For example, the variable <code>CHECK_TIMER1_ABOVE_MIN</code> asks if Timer 1 is above the minimum time threshold. If <code>CHECK_TIMER1_ABOVE_MIN</code> is <code>TRUE</code>, the interview is over the minimum time threshold. If <code>CHECK_TIMER1_ABOVE_MIN</code> is <code>FALSE</code>, the interview is below the minimum time threshold.</p>
+</div>
+<div id="score_-variables" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> <code>SCORE_</code> Variables<a href="output-name-conventions.html#score_-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Variables that begin with the prefix <code>SCORE_</code> are numeric and always fall between 0 and 1. This is because they are the mean of the all the <code>CHECK_</code> variables in a category of validation tests. The category can be told by what follows <code>SCORE_</code>. For example, <code>SCORE_LOGIC</code> is the mean of all the logic validation tests that begin with <code>CHECK_</code>.</p>
+<p>Recall that the <code>CHECK_</code> variables are all logicals. To computers, <code>TRUE</code> is 1 and <code>FALSE</code> is 0. The higher the <code>SCORE_</code> variable, the more checks the interview, enumerator, or supervisor passed.</p>
 
+</div>
 </div>
 
 
@@ -253,8 +230,8 @@ level.</p>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="output-overview.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="output-overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="timer-checks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -285,7 +262,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/basic-use.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/understanding_output.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -293,7 +270,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/basic-use.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/understanding_output.Rmd",
 "text": null
 },
 "download": null,

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Basic Use | autovalid package guide</title>
-  <meta name="description" content="Chapter 2 Basic Use | autovalid package guide" />
+  <title>Chapter 3 Output Overview | autovalid package guide</title>
+  <meta name="description" content="Chapter 3 Output Overview | autovalid package guide" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Basic Use | autovalid package guide" />
+  <meta property="og:title" content="Chapter 3 Output Overview | autovalid package guide" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Basic Use | autovalid package guide" />
+  <meta name="twitter:title" content="Chapter 3 Output Overview | autovalid package guide" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="output-overview.html"/>
+<link rel="prev" href="basic-use.html"/>
+<link rel="next" href="output-name-conventions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -206,55 +206,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basic-use" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Basic Use<a href="basic-use.html#basic-use" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This chapter sheds light on how to use the <code>autovalid</code> package at the most basic
-level.</p>
-<p>There are four steps to run all the validation tests in <code>autovalid</code>.</p>
-<ol style="list-style-type: decimal">
-<li>Load the necessary libraries.
+<div id="output-overview" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Output Overview<a href="output-overview.html#output-overview" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter describes the output of the <code>autovalid()</code> function. The output of <code>autovalid()</code> is a slightly complex structure; it is a nested list. That is, the output is a list that contains a list. To help understand the output, all the elements are labeled.</p>
+<p>The overall output of <code>autovalid()</code> is a list of three objects called <strong><code>validation</code></strong>, <strong><code>raw_input</code></strong>, and <strong><code>composite</code></strong>. The latter two objects, <code>raw_input</code> and <code>composite</code>, are data frames. The object <strong><code>validation</code></strong> is a list of three more objects called <strong><code>responses</code></strong>, <strong><code>interviewers</code></strong>, and <strong><code>supervisors</code></strong>. Each of the objects in the <code>validation</code> list are data frames.</p>
+<p>The output looks like this list:</p>
 <ul>
-<li>These libraries are <code>readxl</code> and <code>autovalid</code>.</li>
-</ul></li>
-<li>Load the raw data and save the path to the zip files.
+<li><strong><code>validation</code></strong> (list)
 <ul>
-<li>The zip files are NOT loaded. Only save the path.</li>
+<li><strong><code>responses</code></strong> (data frame)</li>
+<li><strong><code>interviewers</code></strong> (data frame)</li>
+<li><strong><code>supervisors</code></strong> (data frame)</li>
 </ul></li>
-<li>Use the <code>prep_data()</code> function from <code>autovalid</code> to create the object that will be used for validation.</li>
-<li>Run the <code>autovalid()</code> function on the output of <code>prep_data()</code>.
-<ul>
-<li>Make sure to save the output to an object.</li>
-</ul></li>
-</ol>
-<p>The output of the function <code>autovalid()</code> contains the results of all the validation tests.</p>
-<p>Ultimately, if you follow the four steps, your code should follow the example of the following code block:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="basic-use.html#cb1-1" aria-hidden="true" tabindex="-1"></a>     <span class="co">#.........................Load Libraries.........................</span></span>
-<span id="cb1-2"><a href="basic-use.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-3"><a href="basic-use.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(autovalid)</span>
-<span id="cb1-4"><a href="basic-use.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="basic-use.html#cb1-5" aria-hidden="true" tabindex="-1"></a>     <span class="co">#......................Load data and paths.......................</span></span>
-<span id="cb1-6"><a href="basic-use.html#cb1-6" aria-hidden="true" tabindex="-1"></a>raw_country_data <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">&quot;path/to/raw/data.xlsx&quot;</span>)</span>
-<span id="cb1-7"><a href="basic-use.html#cb1-7" aria-hidden="true" tabindex="-1"></a>audit_files <span class="ot">&lt;-</span> <span class="st">&quot;path/to/audits.zip&quot;</span></span>
-<span id="cb1-8"><a href="basic-use.html#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="basic-use.html#cb1-9" aria-hidden="true" tabindex="-1"></a>     <span class="co">#..........................Prep the data.........................</span></span>
-<span id="cb1-10"><a href="basic-use.html#cb1-10" aria-hidden="true" tabindex="-1"></a>prepped_data <span class="ot">&lt;-</span> <span class="fu">prep_data</span>(raw_country_data,</span>
-<span id="cb1-11"><a href="basic-use.html#cb1-11" aria-hidden="true" tabindex="-1"></a>                          audit_files)</span>
-<span id="cb1-12"><a href="basic-use.html#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="basic-use.html#cb1-13" aria-hidden="true" tabindex="-1"></a>     <span class="co">#..........................Run autovalid.........................</span></span>
-<span id="cb1-14"><a href="basic-use.html#cb1-14" aria-hidden="true" tabindex="-1"></a>validation_output <span class="ot">&lt;-</span> <span class="fu">autovalid</span>(prepped_data)</span></code></pre></div>
-<p>Now that we have the results, we need to know how to understand them. A majority of the rest of the guide is dedicated to explaining the output of the <code>autovalid()</code> function.</p>
-
+<li><strong><code>raw_input</code></strong> (data frame)</li>
+<li><strong><code>composite</code></strong> (data frame)</li>
+</ul>
+<p>The next sections look at each of the objects <code>autovalid()</code> returns.</p>
+<div id="validation" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> <code>validation</code><a href="output-overview.html#validation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As previously mentioned, <code>validation</code> is a list of three data frames. Each of the data frames is a set of validation test results.</p>
+<div id="responses" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> <code>responses</code><a href="output-overview.html#responses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>responses</code> data frame contains all the interview-level checks run by <code>autovalid()</code>, as well as the <code>_UUID</code>, enumerator ID, supervisor ID, and group split the interview belonged to.</p>
 </div>
-
-
-
+<div id="interviewers" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> <code>interviewers</code><a href="output-overview.html#interviewers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>interviewers</code> data frame contains all the enumerator-level checks run by <code>autovalid()</code>, as well as enumerator ID, supervisor ID, and group split the interview belonged to. Most of these checks are the mean of the interview-level checks aggregated by enumerator.</p>
+</div>
+<div id="supervisors" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> <code>supervisors</code><a href="output-overview.html#supervisors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>supervisors</code> data frame contains all the supervisor-level checks run by <code>autovalid()</code>, as well as supervisor ID, and group split the interview belonged to. Most of these checks are the mean of the interview-level checks aggregated by supervisor.</p>
+</div>
+</div>
+<div id="raw_input" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> <code>raw_input</code><a href="output-overview.html#raw_input" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>raw_input</code> data frame is the condensed version of the raw data downloaded from KoboToolbox with non-valid interviews filtered out.</p>
+<p>The raw data downloaded from KoboToolbox has several “extra” columns from our efforts at randomization. The <code>raw_input</code> data frame collapses all these columns into one variable as appropriate.</p>
+<p>The <code>raw_input</code> only contains unique interviews the enumerator marks as “complete”.</p>
+</div>
+<div id="composite" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> <code>composite</code><a href="output-overview.html#composite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>composite</code> data frame is a data frame that contains all the interview responses from <code>raw_input</code> and all the interview-level tests from <code>validation$responses</code>. It is a result of joining the two data frame by <code>_UUID</code>.</p>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="output-overview.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="basic-use.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="output-name-conventions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -285,7 +286,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/basic-use.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/understanding_output.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -293,7 +294,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/basic-use.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/understanding_output.Rmd",
 "text": null
 },
 "download": null,
