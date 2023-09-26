@@ -1,0 +1,21 @@
+# Variance Checks {#varaince-checks}
+
+The tests are also known as "straightlining" checks.
+
+The `autovalid()` function checks whether the enumerator entered the same answer for all questions that appear on a page. This is particularly relevant to batteries, also known as grids. The resulting columns follow the naming pattern
+
+- **`CHECK_QXX_VARIES`**
+
+where `QXX` is the root of the question battery/grid.
+
+For example, to see whether a interview contains the same answer for every question in the `Q204` battery, look to the variable `CHECK_Q204_VARIES`.
+
+## `SCORE_VARY`
+
+The `SCORE_VARY` variable calculates the mean of all the `CHECK_QXX_VARIES` variables. The higher `SCORE_VARY` is, the fewer batteries are straightlined. The lower `SOCRE_VARY`, the more batteries contain all the same result (by individual battery).
+
+## Result Columns
+
+For each battery checked resulting in a `CHECK_QXX_VARIES` column, there is a `QXX_RESPONSE` column. If responses to the `QXX` battery vary, `QXX_RESPONSE` is `NA`. Otherwise, `QXX_RESPONSE` records the response used for every question in the battery.
+
+For example, if the same answer was recorded for every question in the `Q204` battery, that answer would be recorded in `Q204_RESPONSE`.
