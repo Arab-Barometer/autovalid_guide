@@ -10,4 +10,5 @@ rmd_files: ["index.Rmd",
             "basic-use.Rmd",
             "understanding_output.Rmd",
             "timer-checks.Rmd",
-            "variance-checks.Rmd"]
+            "variance-checks.Rmd",
+            "missingness-checks.Rmd"]
