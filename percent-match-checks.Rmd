@@ -1,0 +1,43 @@
+# Percent Match Check {#percent-match}
+
+The `autovalid()` function computes the percent match for each interview and checks whether it is below 85\%. The result of the test is in:
+
+- `CHECK_PERCENT_MATCH`.
+
+## Changing Defaults
+
+There are **four** arguments in `autovalid()` that can be used to change the default settings for the percent match check.
+
+- `thresh_max_pct` : The highest percent one survey can match another.
+  - Use a number between 0 and 1.
+  - Defaults to `0.85`.
+- `substantive_only` : Whether to only include substantive questions.
+  - Must be `TRUE` or `FALSE`.
+  - Defaults to `TRUE`.
+- `first_sub_q` : If only including substantive questions, where to start.
+  - Must be the name of a variable in the data.
+  - Defaults to `"Q2061A"`.
+- `last_sub_q` : If only including questions, where to end.
+  - Must be either the name of a variable in the data or `"auto"`.
+  - Defaults to `"auto"`.
+  - If argument is set to `"auto"`, the `autovalid()` finds the last variable in the data beginning with `"Q"`.
+  
+The following is an example of changing the defaults in `autovalid()` for the percent match check. The object `prepped_data` is the output of the `prep_data()` function. See [Chapter 2](#basic-use) for a refresher.
+
+```{r timer-check-1,eval=FALSE}
+
+autovalid(prepped_data,
+          thresh_max_pct = 0.90, # Does the interview match below 90%?
+          substantive_only = FALSE, # Include all questions in calculation
+          first_sub_q = "Q101", # Subset columns starting at Q101 (not relevant here)
+          last_sub_q = "Q700A_1" # Subset columns ending at Q700A_1 (not relevant here)
+          )
+## Note: The arguments `first_sub_q` and `last_sub_q` would be irrelevant in this case,
+## since `substantive_only` is set to FALSE.
+
+```
+
+## Result Columns
+
+The result of the percent match calculation can be found in `PCT_MATCH`.
+
