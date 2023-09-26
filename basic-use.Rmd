@@ -1,5 +1,5 @@
 # (PART) General Use {-}
-# Basic Use
+# Basic Use {#basic-use}
 
 This chapter sheds light on how to use the `autovalid` package at the most basic
 level.
