@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Output Name Conventions | autovalid package guide</title>
-  <meta name="description" content="Chapter 3 Output Name Conventions | autovalid package guide" />
+  <title>Chapter 8 Location Checks | autovalid package guide</title>
+  <meta name="description" content="Chapter 8 Location Checks | autovalid package guide" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Output Name Conventions | autovalid package guide" />
+  <meta property="og:title" content="Chapter 8 Location Checks | autovalid package guide" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Output Name Conventions | autovalid package guide" />
+  <meta name="twitter:title" content="Chapter 8 Location Checks | autovalid package guide" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="output-overview.html"/>
-<link rel="next" href="timer-checks.html"/>
+<link rel="prev" href="percent-match.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -217,32 +217,127 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="output-name-conventions" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Output Name Conventions<a href="output-name-conventions.html#output-name-conventions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>When exploring the output of <code>autovalid()</code>, you will see many variables that beging with <code>CHECK_</code> or <code>SCORE_</code>. These prefixes tell you a bit about the variable.</p>
-<div id="check_-variables" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> <code>CHECK_</code> Variables<a href="output-name-conventions.html#check_-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Variables that begin with the prefix <code>CHECK_</code> are logicals, meaning the entire column is <code>TRUE</code>, <code>FALSE</code>, or occasionally <code>NA</code>.</p>
-<p>The question the variable is asking is “Is this check passed?” If the result is <code>TRUE</code>, the check is passed. If the result is <code>FALSE</code>, the check is failed. Interviews, enumerators, or supervisors flagged by <code>autovalid()</code> will have a lot of <code>FALSE</code> results.</p>
-<p>For example, the variable <code>CHECK_TIMER1_ABOVE_MIN</code> asks if Timer 1 is above the minimum time threshold. If <code>CHECK_TIMER1_ABOVE_MIN</code> is <code>TRUE</code>, the interview is over the minimum time threshold. If <code>CHECK_TIMER1_ABOVE_MIN</code> is <code>FALSE</code>, the interview is below the minimum time threshold.</p>
+<div id="location-checks" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Location Checks<a href="location-checks.html#location-checks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The <code>autovalid()</code> function performs <strong>four</strong> location checks by default. Two more location checks can be preformed if additional data is provided. These checks are:</p>
+<ul>
+<li><code>CHECK_HAS_SURVEY_GPS</code> (always included)</li>
+<li><code>CHECK_HAS_AUDIT_GPS</code> (always included)</li>
+<li><code>CHECK_AUDIT2SURVEY</code> (always included)</li>
+<li><code>CHECK_POSITION_CHANGE</code> (always included)</li>
+<li><code>CHECK_CENTER2SURVEY</code> (need additional data)</li>
+<li><code>CHECK_CENTER2AUDIT</code> (need additional data)</li>
+</ul>
+<p>Anytime a distance calculation is preformed, the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine distance formula</a> is used.</p>
+<div id="always-included-checks" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Always Included Checks<a href="location-checks.html#always-included-checks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Four checks are always run by <code>autovalid()</code>. They are <code>CHECK_HAS_SURVEY_GPS</code>, <code>CHECK_HAS_AUDIT_GPS</code>, <code>CHECK_AUDIT2SURVEY</code>, and <code>CHECK_POSITION_CHANGE</code>.</p>
+<p>The variables <code>CHECK_HAS_*_GPS</code> report whether GPS has been recorded by the survey and the audit file.</p>
+<p>If both the survey and the audit file have GPS records, the variable <code>CHECK_AUDIT2SURVEY</code> reports whether the two points are within 50 meters of each other using the Haversine formula.</p>
+<p>If the audit file has GPS records, <code>CHECK_POSITION_CHANGE</code> reports whether the enumerator moved more than 100 meters from when the interview began to when it finished.</p>
 </div>
-<div id="score_-variables" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> <code>SCORE_</code> Variables<a href="output-name-conventions.html#score_-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Variables that begin with the prefix <code>SCORE_</code> are numeric and always fall between 0 and 1. This is because they are the mean of the all the <code>CHECK_</code> variables in a category of validation tests. The category can be told by what follows <code>SCORE_</code>. For example, <code>SCORE_LOGIC</code> is the mean of all the logic validation tests that begin with <code>CHECK_</code>.</p>
-<p>Recall that the <code>CHECK_</code> variables are all logicals. To computers, <code>TRUE</code> is 1 and <code>FALSE</code> is 0. The higher the <code>SCORE_</code> variable, the more checks the interview, enumerator, or supervisor passed.</p>
+<div id="potential-additional-checks" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Potential Additional Checks<a href="location-checks.html#potential-additional-checks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If location data is provided, two more location checks can be preformed. They are <code>CHECK_CENTER2SURVEY</code> and <code>CHECK_CENTER2AUDIT</code>.</p>
+<p>The location data provided must include the block ID and coordinates in longitude and latitude for the center of the block ID. If the additional location data is provided, <code>CHECK_CENTER2SURVEY</code> and <code>CHECK_CENTER2AUDIT</code> report whether the interview is less than 500 meters from an urban block center or less than 1000 meters from a rural block center.</p>
+</div>
+<div id="changing-defaults-2" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Changing Defaults<a href="location-checks.html#changing-defaults-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="always" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Always<a href="location-checks.html#always" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are two arguments in <code>autovalid()</code> for location checks that are always run.</p>
+<ul>
+<li><code>thresh_max_as</code> : The maximum distance in meters the <strong>a</strong>udit file GPS and <strong>s</strong>urvey GPS can be from each other.
+<ul>
+<li>Use an integer.</li>
+<li>Defaults to <code>50</code>.</li>
+</ul></li>
+<li><code>thresh_max_pos_change</code> : The maximum distance in meters between the start and end of an interview as recorded by the audit file.
+<ul>
+<li>Use an integer.</li>
+<li>Defaults to <code>100</code>.</li>
+</ul></li>
+</ul>
+<p>The following is an example of changing the defaults in <code>autovalid()</code> for the location checks. The object <code>prepped_data</code> is the output of the <code>prep_data()</code> function. See <a href="basic-use.html#basic-use">Chapter 2</a> for a refresher.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="location-checks.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autovalid</span>(prepped_data,</span>
+<span id="cb5-2"><a href="location-checks.html#cb5-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">thresh_max_as =</span> <span class="dv">10</span>, <span class="co"># Are the survey and audit recordings within 10 meters of each other?</span></span>
+<span id="cb5-3"><a href="location-checks.html#cb5-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">thresh_max_pos_change =</span> <span class="dv">200</span>, <span class="co"># Did the interview move less than 200 meters from start to finish?</span></span>
+<span id="cb5-4"><a href="location-checks.html#cb5-4" aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div>
+</div>
+<div id="additional-parameters" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Additional Parameters<a href="location-checks.html#additional-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are <strong>six</strong> arguments in <code>autovalid()</code> for location checks if additional data is provided.</p>
+<ul>
+<li><code>location_data</code> : The name of the additional data file.
+<ul>
+<li><strong>Must be provided to see additional checks.</strong></li>
+<li>MaryClare has included the reference coordinates sent by the partners on the Drive.</li>
+<li>You must load the data as a data frame into R, then supply that data to <code>autovalid()</code> through this argument.</li>
+<li>Defaults to <code>FALSE</code>.</li>
+</ul></li>
+<li><code>bid_col_name</code> : The name of the column containing the Block ID in the supplied data file.
+<ul>
+<li>Defaults to <code>"Block_ID"</code>.</li>
+<li>If you use the data from the Drive provided by the partners and edited by MaryClare, this default is fine.</li>
+<li>If you use a different data source, you must provide the name of the column containing the Block ID.</li>
+</ul></li>
+<li><code>long_col_name</code> : The name of the column containing the longitude in the supplied data file.
+<ul>
+<li>Defaults to <code>"Longitude"</code>.</li>
+<li>If you use the data from the Drive provided by the partners and edited by MaryClare, this default is fine.</li>
+<li>If you use a different data source, you must provide the name of the column containing the longitude.</li>
+</ul></li>
+<li><code>lat_col_name</code> : The name of the column containing the latitude in the supplied data file.
+<ul>
+<li>Defaults to <code>"Latitude"</code>.</li>
+<li>If you use the data from the Drive provided by the partners and edited by MaryClare, this default is fine.</li>
+<li>If you use a different data source, you must provide the name of the column containing the latitude.</li>
+</ul></li>
+<li><code>thresh_max_urban</code> : The furthest an interview can be from the supplied coordinates in an urban area.
+<ul>
+<li>Use an integer.</li>
+<li>Partners may have suggestions for acceptable distances.</li>
+<li>Defaults to <code>500</code>.</li>
+</ul></li>
+<li><code>thresh_max_rural</code> : The furthest an interview can be from the supplied coordinates in an rural area.
+<ul>
+<li>Use an integer.</li>
+<li>Partners may have suggestions for acceptable distances.</li>
+<li>Defaults to <code>1000</code>.</li>
+</ul></li>
+</ul>
+<p>The following is an example of supplying additional location data without changing the defaults in <code>autovalid()</code> for the location checks. The package <code>"readxl"</code> is assumed to be loaded. The object <code>prepped_data</code> is the output of the <code>prep_data()</code> function. See <a href="basic-use.html#basic-use">Chapter 2</a> for a refresher.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="location-checks.html#cb6-1" aria-hidden="true" tabindex="-1"></a>GPS_references <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">&quot;path/to/Drive/location/data.xlsx&quot;</span>) <span class="co"># Loading data MaryClare saved to the Drive.</span></span>
+<span id="cb6-2"><a href="location-checks.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="location-checks.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">autovalid</span>(prepped_data,</span>
+<span id="cb6-4"><a href="location-checks.html#cb6-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">location_data =</span> GPS_references <span class="co"># Loaded location data MaryClare saved to the Drive.</span></span>
+<span id="cb6-5"><a href="location-checks.html#cb6-5" aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div>
+<p>The following is an example of supplying additional location data and changing the defaults in <code>autovalid()</code> for the location checks. The package <code>"readxl"</code> is assumed to be loaded. The object <code>prepped_data</code> is the output of the <code>prep_data()</code> function. See <a href="basic-use.html#basic-use">Chapter 2</a> for a refresher.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="location-checks.html#cb7-1" aria-hidden="true" tabindex="-1"></a>GPS_references_other <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">&quot;path/to/Other/location/data.xlsx&quot;</span>) <span class="co"># Loading data some location data.</span></span>
+<span id="cb7-2"><a href="location-checks.html#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="location-checks.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">autovalid</span>(prepped_data,</span>
+<span id="cb7-4"><a href="location-checks.html#cb7-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">location_data =</span> GPS_references_other, <span class="co"># Loaded other location data</span></span>
+<span id="cb7-5"><a href="location-checks.html#cb7-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">bid_col_name =</span> <span class="st">&quot;BID_Column_Name&quot;</span>, <span class="co"># Block ID column name in location data</span></span>
+<span id="cb7-6"><a href="location-checks.html#cb7-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">long_col_name =</span> <span class="st">&quot;Longitude_Column_Name&quot;</span>, <span class="co"># Longitude column name in location data</span></span>
+<span id="cb7-7"><a href="location-checks.html#cb7-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">lat_col_name =</span> <span class="st">&quot;Latitdue_Column_Name&quot;</span>, <span class="co"># Latitude column name in location data</span></span>
+<span id="cb7-8"><a href="location-checks.html#cb7-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">thresh_max_urban =</span> <span class="dv">15</span>, <span class="co"># Is the interview within 15m of the central Block ID point for urban areas?</span></span>
+<span id="cb7-9"><a href="location-checks.html#cb7-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">thresh_max_rural =</span> <span class="dv">3000</span> <span class="co"># Is the interview within 3km of the central Block ID point for rural areas?</span></span>
+<span id="cb7-10"><a href="location-checks.html#cb7-10" aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div>
+</div>
+</div>
+<div id="result-columns-4" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Result Columns<a href="location-checks.html#result-columns-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The actual distance between the audit GPS and the survey GPS, the audit GPS and the location data GPS, and the survey GPS and the location data GPS can be found in the columns <code>AUDIT2SURVEY_DIST</code>, <code>CENTER2AUDIT_DIST</code>, and <code>CENTER2SURVEY_DIST</code>, respectively. The distance is in meters and calculated according to the Haversine formula.</p>
 
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="output-overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="timer-checks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="percent-match.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -273,7 +368,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/understanding_output.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/location-checks.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -281,7 +376,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/understanding_output.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/location-checks.Rmd",
 "text": null
 },
 "download": null,

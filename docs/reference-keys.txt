@@ -1,4 +1,3 @@
-package-guide-overview
 basic-use
 output-overview
 validation
@@ -30,3 +29,10 @@ result-columns-2
 percent-match
 changing-defaults-1
 result-columns-3
+location-checks
+always-included-checks
+potential-additional-checks
+changing-defaults-2
+always
+additional-parameters
+result-columns-4
