@@ -18,7 +18,7 @@ The `autovalid()` function performs ten checks related to time and gives an over
 
 ## Understanding the Four Timers
 
-`autovalid()` uses four different measures of time to calculate the length of a survey. These timers are called" `TIMER1`, `TIMER2`, `TIMER3`, and `TIMER4`.
+`autovalid()` uses four different measures of time to calculate the length of a survey. These timers are called `TIMER1`, `TIMER2`, `TIMER3`, and `TIMER4`.
 
 ### `TIMER1`
 

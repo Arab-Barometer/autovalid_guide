@@ -1,0 +1,116 @@
+# Location Checks {#location-checks}
+
+The `autovalid()` function performs **four** location checks by default. Two more location checks can be preformed if additional data is provided. These checks are:
+
+- `CHECK_HAS_SURVEY_GPS` (always included)
+- `CHECK_HAS_AUDIT_GPS` (always included)
+- `CHECK_AUDIT2SURVEY` (always included)
+- `CHECK_POSITION_CHANGE` (always included)
+- `CHECK_CENTER2SURVEY` (need additional data)
+- `CHECK_CENTER2AUDIT` (need additional data)
+
+Anytime a distance calculation is preformed, the [Haversine distance formula](https://en.wikipedia.org/wiki/Haversine_formula) is used.
+
+## Always Included Checks
+
+Four checks are always run by `autovalid()`. They are `CHECK_HAS_SURVEY_GPS`, `CHECK_HAS_AUDIT_GPS`, `CHECK_AUDIT2SURVEY`, and `CHECK_POSITION_CHANGE`.
+
+The variables `CHECK_HAS_*_GPS` report whether GPS has been recorded by the survey and the audit file.
+
+If both the survey and the audit file have GPS records, the variable `CHECK_AUDIT2SURVEY` reports whether the two points are within 50 meters of each other using the Haversine formula.
+
+If the audit file has GPS records, `CHECK_POSITION_CHANGE` reports whether the enumerator moved more than 100 meters from when the interview began to when it finished.
+
+## Potential Additional Checks
+
+If location data is provided, two more location checks can be preformed. They are `CHECK_CENTER2SURVEY` and `CHECK_CENTER2AUDIT`.
+
+The location data provided must include the block ID and coordinates in longitude and latitude for the center of the block ID. If the additional location data is provided, `CHECK_CENTER2SURVEY` and `CHECK_CENTER2AUDIT` report whether the interview is less than 500 meters from an urban block center or less than 1000 meters from a rural block center.
+
+## Changing Defaults
+
+### Always
+
+There are two arguments in `autovalid()` for location checks that are always run.
+
+- `thresh_max_as` : The maximum distance in meters the **a**udit file GPS and **s**urvey GPS can be from each other.
+  - Use an integer.
+  - Defaults to `50`.
+- `thresh_max_pos_change` : The maximum distance in meters between the start and end of an interview as recorded by the audit file.
+  - Use an integer.
+  - Defaults to `100`.
+  
+The following is an example of changing the defaults in `autovalid()` for the location checks. The object `prepped_data` is the output of the `prep_data()` function. See [Chapter 2](#basic-use) for a refresher.
+
+```{r location-check-1,eval=FALSE}
+
+autovalid(prepped_data,
+          thresh_max_as = 10, # Are the survey and audit recordings within 10 meters of each other?
+          thresh_max_pos_change = 200, # Did the interview move less than 200 meters from start to finish?
+          )
+
+```
+
+### Additional Parameters
+
+There are **six** arguments in `autovalid()` for location checks if additional data is provided.
+
+- `location_data` : The name of the additional data file.
+  - **Must be provided to see additional checks.**
+  - MaryClare has included the reference coordinates sent by the partners on the Drive.
+  - You must load the data as a data frame into R, then supply that data to `autovalid()` through this argument.
+  - Defaults to `FALSE`.
+- `bid_col_name` : The name of the column containing the Block ID in the supplied data file.
+  - Defaults to `"Block_ID"`.
+  - If you use the data from the Drive provided by the partners and edited by MaryClare, this default is fine.
+  - If you use a different data source, you must provide the name of the column containing the Block ID.
+- `long_col_name` : The name of the column containing the longitude in the supplied data file.
+  - Defaults to `"Longitude"`.
+  - If you use the data from the Drive provided by the partners and edited by MaryClare, this default is fine.
+  - If you use a different data source, you must provide the name of the column containing the longitude.
+- `lat_col_name` : The name of the column containing the latitude in the supplied data file.
+  - Defaults to `"Latitude"`.
+  - If you use the data from the Drive provided by the partners and edited by MaryClare, this default is fine.
+  - If you use a different data source, you must provide the name of the column containing the latitude.
+- `thresh_max_urban` : The furthest an interview can be from the supplied coordinates in an urban area.
+  - Use an integer.
+  - Partners may have suggestions for acceptable distances.
+  - Defaults to `500`.
+- `thresh_max_rural` : The furthest an interview can be from the supplied coordinates in an rural area.
+  - Use an integer.
+  - Partners may have suggestions for acceptable distances.
+  - Defaults to `1000`.
+
+The following is an example of supplying additional location data without changing the defaults in `autovalid()` for the location checks. The package `"readxl"` is assumed to be loaded. The object `prepped_data` is the output of the `prep_data()` function. See [Chapter 2](#basic-use) for a refresher.
+
+```{r location-check-2,eval=FALSE}
+
+GPS_references <- read_xlsx("path/to/Drive/location/data.xlsx") # Loading data MaryClare saved to the Drive.
+
+autovalid(prepped_data,
+          location_data = GPS_references # Loaded location data MaryClare saved to the Drive.
+          )
+
+```
+
+
+The following is an example of supplying additional location data and changing the defaults in `autovalid()` for the location checks. The package `"readxl"` is assumed to be loaded. The object `prepped_data` is the output of the `prep_data()` function. See [Chapter 2](#basic-use) for a refresher.
+
+```{r location-check-3,eval=FALSE}
+
+GPS_references_other <- read_xlsx("path/to/Other/location/data.xlsx") # Loading data some location data.
+
+autovalid(prepped_data,
+          location_data = GPS_references_other, # Loaded other location data
+          bid_col_name = "BID_Column_Name", # Block ID column name in location data
+          long_col_name = "Longitude_Column_Name", # Longitude column name in location data
+          lat_col_name = "Latitdue_Column_Name", # Latitude column name in location data
+          thresh_max_urban = 15, # Is the interview within 15m of the central Block ID point for urban areas?
+          thresh_max_rural = 3000 # Is the interview within 3km of the central Block ID point for rural areas?
+          )
+
+```
+
+## Result Columns
+
+The actual distance between the audit GPS and the survey GPS, the audit GPS and the location data GPS, and the survey GPS and the location data GPS can be found in the columns `AUDIT2SURVEY_DIST`, `CENTER2AUDIT_DIST`, and `CENTER2SURVEY_DIST`, respectively. The distance is in meters and calculated according to the Haversine formula.

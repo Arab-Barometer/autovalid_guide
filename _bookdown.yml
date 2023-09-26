@@ -12,4 +12,5 @@ rmd_files: ["index.Rmd",
             "timer-checks.Rmd",
             "variance-checks.Rmd",
             "missingness-checks.Rmd",
-            "percent-match-checks.Rmd"]
+            "percent-match-checks.Rmd",
+            "location-checks.Rmd"]

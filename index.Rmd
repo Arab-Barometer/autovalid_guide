@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
-# Package & Guide Overview
+# Package & Guide Overview {-}
 
 The `autovalid` package was developed by Gordon Arsenoff and MaryClare Roche to 
 aid Arab Barometer in assessing survey data quality.
