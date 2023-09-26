@@ -24,7 +24,7 @@ There are **four** arguments in `autovalid()` that can be used to change the def
   
 The following is an example of changing the defaults in `autovalid()` for the percent match check. The object `prepped_data` is the output of the `prep_data()` function. See [Chapter 2](#basic-use) for a refresher.
 
-```{r timer-check-1,eval=FALSE}
+```{r percent-match-1,eval=FALSE}
 
 autovalid(prepped_data,
           thresh_max_pct = 0.90, # Does the interview match below 90%?
