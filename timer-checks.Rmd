@@ -51,7 +51,7 @@ By default, the first substantive question is set to `"Q2061A"` and the last sub
 
 ## Min/Max Length
 
-The variables called `CHECK_TIMERN_ABOVE_MIN` and `CHECK_TIMERN_BELOW_MAX`, where `N` is 1 through 4, are all logicals telling the user whether the timer in question recorded a time above the minimum time and below the maximum time, respectively. By default, the minimum time is set to 30 minutes and the maximum time is set to 75 minutes.
+The variables called `CHECK_TIMERX_ABOVE_MIN` and `CHECK_TIMERX_BELOW_MAX`, where `X` is 1 through 4, are all logicals telling the user whether the timer in question recorded a time above the minimum time and below the maximum time, respectively. By default, the minimum time is set to 30 minutes and the maximum time is set to 75 minutes.
 
 ## `SCORE_TIMER`
 
@@ -74,11 +74,11 @@ There are **four** arguments in `autovalid()` that can be used to change the def
 - `thresh_min_len`: The minimum amount of time in minutes an interview should take.
   - Use a positive integer.
   - Default is `30`.
-  - Associated with `CHECK_TIMERN_ABOVE_MIN`, where `N` is 1 through 4.
+  - Associated with `CHECK_TIMERX_ABOVE_MIN`, where `X` is 1 through 4.
 - `thresh_max_len`: The maximum amount of time in minutes an interview should take.
   - Use a positive integer.
   - Default is `75`.
-  - Associated with `CHECK_TIMERN_BELOW_MAX`, where `N` is 1 through 4.
+  - Associated with `CHECK_TIMERX_BELOW_MAX`, where `X` is 1 through 4.
 
 
 The following is an example of changing the defaults in `autovalid()` for the timer checks. The object `prepped_data` is the output of the `prep_data()` function. See [Chapter 2](#basic-use) for a refresher.
