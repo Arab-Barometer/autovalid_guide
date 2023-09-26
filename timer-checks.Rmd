@@ -1,3 +1,5 @@
+# (PART) Validation Test Categories {-}
+
 # Timer Checks
 
 The `autovalid()` function performs ten checks related to time and gives an overall score. The results are in the columns:
@@ -45,4 +47,49 @@ By default, the first substantive question is set to `"Q2061A"` and the last sub
 
 ## Time of Day
 
-`autovalid()` uses the time recorded in the 
+`autovalid()` uses the time recorded in the survey to determine whether the interview took place after 9am and before 8pm.
+
+## Min/Max Length
+
+The variables called `CHECK_TIMERN_ABOVE_MIN` and `CHECK_TIMERN_BELOW_MAX`, where `N` is 1 through 4, are all logicals telling the user whether the timer in question recorded a time above the minimum time and below the maximum time, respectively. By default, the minimum time is set to 30 minutes and the maximum time is set to 75 minutes.
+
+## `SCORE_TIMER`
+
+The `SCORE_TIMER` variable calculates the mean of all the check variables.
+
+## Changing Defaults
+
+There are **four** arguments in `autovalid()` that can be used to change the defaults for the timer checks. They are:
+
+- `thresh_opening`: The earliest time of day an interview should begin.
+  - Use a 24 hour clock time.
+  - Default is `9`.
+  - Associated with `CHECK_TIMER1_AFTER_9AM`.
+  - NOTE: Even if you change the default, the variable name will **not** change. It will still say `CHECK_TIMER1_AFTER_9AM`.
+- `thresh_closing`: The latest time of day an interview should begin.
+  - Use a 24 hour clock time.
+  - Default is `20`.
+  - Associated with `CHECK_TIMER1_BEFORE_8PM`.
+  - NOTE: Even if you change the default, the variable name will **not** change. It will still say `CHECK_TIMER1_BEFORE_8PM`.
+- `thresh_min_len`: The minimum amount of time in minutes an interview should take.
+  - Use a positive integer.
+  - Default is `30`.
+  - Associated with `CHECK_TIMERN_ABOVE_MIN`, where `N` is 1 through 4.
+- `thresh_max_len`: The maximum amount of time in minutes an interview should take.
+  - Use a positive integer.
+  - Default is `75`.
+  - Associated with `CHECK_TIMERN_BELOW_MAX`, where `N` is 1 through 4.
+
+
+The following is an example of changing the defaults in `autovalid()` for the timer checks. The object `prepped_data` is the output of the `prep_data()` function. See [Chapter 2](basic-use) for a refresher.
+
+```{r timer-check-1,eval=FALSE}
+
+autovalid(prepped_data,
+          thresh_opening = 8, # Does the interview take place after 8am?
+          thresh_closing = 16, # Does the interview take place before 4pm?
+          thresh_min_len = 20, # Does the interview take longer than 20 minutes?
+          thresh_max_len = 120 # Does the interview take less than 2 hours?
+          )
+
+```
