@@ -1,4 +1,3 @@
-# (PART) Types of Checks {-}
 # Timer Checks
 
 The `autovalid()` function performs ten checks related to time and gives an overall score. The results are in the columns:

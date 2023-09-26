@@ -1,0 +1,65 @@
+# (PART) Understanding `autovalid()` Output {-}
+
+# Output Overview
+
+This chapter describes the output of the `autovalid()` function. The output of `autovalid()` is a slightly complex structure; it is a nested list. That is, the output is a list that contains a list. To help understand the output, all the elements are labeled.
+
+The overall output of `autovalid()` is a list of three objects called **`validation`**, **`raw_input`**, and **`composite`**. The latter two objects, `raw_input` and `composite`, are data frames. The object **`validation`** is a list of three more objects called **`responses`**, **`interviewers`**, and **`supervisors`**. Each of the objects in the `validation` list are data frames.
+
+The output looks like this list:
+
+- **`validation`** (list)
+  - **`responses`** (data frame)
+  - **`interviewers`** (data frame)
+  - **`supervisors`** (data frame)
+- **`raw_input`** (data frame)
+- **`composite`** (data frame)
+
+The next sections look at each of the objects `autovalid()` returns.
+
+## `validation`
+
+As previously mentioned, `validation` is a list of three data frames. Each of the data frames is a set of validation test results. 
+
+### `responses`
+
+The `responses` data frame contains all the interview-level checks run by `autovalid()`, as well as the `_UUID`, enumerator ID, supervisor ID, and group split the interview belonged to.
+
+### `interviewers`
+
+The `interviewers` data frame contains all the enumerator-level checks run by `autovalid()`,  as well as enumerator ID, supervisor ID, and group split the interview belonged to. Most of these checks are the mean of the interview-level checks aggregated by enumerator.
+
+### `supervisors`
+
+The `supervisors` data frame contains all the supervisor-level checks run by `autovalid()`,  as well as supervisor ID, and group split the interview belonged to. Most of these checks are the mean of the interview-level checks aggregated by supervisor.
+
+## `raw_input`
+
+The `raw_input` data frame is the condensed version of the raw data downloaded from KoboToolbox with non-valid interviews filtered out.
+
+The raw data downloaded from KoboToolbox has several "extra" columns from our efforts at randomization. The `raw_input` data frame collapses all these columns into one variable as appropriate.
+
+The `raw_input` only contains unique interviews the enumerator marks as "complete".
+
+## `composite`
+
+The `composite` data frame is a data frame that contains all the interview responses from `raw_input` and all the interview-level tests from `validation$responses`. It is a result of joining the two data frame by `_UUID`.
+
+
+# Output Name Conventions
+
+When exploring the output of `autovalid()`, you will see many variables that beging with `CHECK_` or `SCORE_`. These prefixes tell you a bit about the variable.
+
+## `CHECK_` Variables
+
+Variables that begin with the prefix `CHECK_` are logicals, meaning the entire column is `TRUE`, `FALSE`, or occasionally `NA`.
+
+The question the variable is asking is "Is this check passed?" If the result is `TRUE`, the check is passed. If the result is `FALSE`, the check is failed. Interviews, enumerators, or supervisors flagged by `autovalid()` will have a lot of `FALSE` results.
+
+For example, the variable `CHECK_TIMER1_ABOVE_MIN` asks if Timer 1 is above the minimum time threshold. If `CHECK_TIMER1_ABOVE_MIN` is `TRUE`, the interview is over the minimum time threshold. If `CHECK_TIMER1_ABOVE_MIN` is `FALSE`, the interview is below the minimum time threshold. 
+
+## `SCORE_` Variables
+
+Variables that begin with the prefix `SCORE_` are numeric and always fall between 0 and 1. This is because they are the mean of the all the `CHECK_` variables in a category of validation tests. The category can be told by what follows `SCORE_`. For example, `SCORE_LOGIC` is the mean of all the logic validation tests that begin with `CHECK_`.
+
+Recall that the `CHECK_` variables are all logicals. To computers, `TRUE` is 1 and `FALSE` is 0. The higher the `SCORE_` variable, the more checks the interview, enumerator, or supervisor passed.

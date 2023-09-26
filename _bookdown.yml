@@ -6,3 +6,7 @@ view: https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/%s
 language:
   ui:
     chapter_name: "Chapter "
+rmd_files: ["index.Rmd",
+            "basic-use.Rmd",
+            "understanding_output.Rmd"
+            "tiemr-checks.Rmd"]

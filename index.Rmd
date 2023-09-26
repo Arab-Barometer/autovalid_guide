@@ -8,7 +8,7 @@ site: bookdown::bookdown_site
 # Package & Guide Overview
 
 The `autovalid` package was developed by Gordon Arsenoff and MaryClare Roche to 
-aid ArabBarometer in assessing survey data quality.
+aid Arab Barometer in assessing survey data quality.
 
 This guide should serve as a reference for how to use the `autovalid` package and
 how to understand the results.
