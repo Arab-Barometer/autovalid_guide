@@ -1,0 +1,25 @@
+# Missingness Checks {#missingness-checks}
+
+The `autovalid()` function checks the level of missingness at both the interview- and enumerator-level. The result of the test is in:
+
+- `CHECK_MISS_IND`
+
+A response is considered "missing" if it is coded as `98`, `99`, or `100`. The missingness of an interview is calculated by the total number of missing responses divided by the total responses recorded. Only variables beginning with `Q` are counted. The variable `CHECK_MIS_IND` reports whether the percent of missing responses is below 15\%.
+
+## Changing Defualts
+
+By default, `autovalid()` checks if the rate of missingness in an interview is below 15\%. This can be changed with the argument `thresh_mis_row` using a numeric value between 0 and 1.
+
+The following is an example of changing the defaults in `autovalid()` for the missingness check. The object `prepped_data` is the output of the `prep_data()` function. See [Chapter 2](#basic-use) for a refresher.
+
+```{r variance-checks-1,eval=FALSE}
+
+autovalid(prepped_data,
+          thresh_mis_row = .30 # Are more than 30% of answers 98/99/100?
+          )
+
+```
+
+## Result Columns
+
+There is also a column that reports the percent missing for that interview. The column is called `PCT_MISS`.
