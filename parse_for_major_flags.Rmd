@@ -1,8 +1,8 @@
 # (PART) Understanding `parse_for_major_flags()` Output {-}
 
-The `parse_for_major_flags()` function is a powerful tool designed to analyze the results of the `autovalid()` function and identify interviews that fail major tests. These major tests include considerations for interview duration, missing data, percent match, location discrepancies, and straightlining.
-
 # Function Parameters
+
+The `parse_for_major_flags()` function is a powerful tool designed to analyze the results of the `autovalid()` function and identify interviews that fail major tests. These major tests include considerations for interview duration, missing data, percent match, location discrepancies, and straightlining.
 
 This chapter describes the different parameters in the function that can be adjusted for your specific analysis. 
 
@@ -47,7 +47,7 @@ The `do_missingness` parameter flags high levels of missing responses in an inte
 
 ## `do_location`
 
-The `do_location` parameter flags questionable locations and is set to TURE by default. Set `do_location` to FALSE to exclude location checks from the analysis. 
+The `do_location` parameter flags questionable locations and is set to TRUE by default. Set `do_location` to FALSE to exclude location checks from the analysis. 
 
 # Output Overview
 
@@ -61,15 +61,8 @@ The output looks like this list:
 
 ## `refield_report`
 
-`refield_report` a data frame that provides information about interviews that failed one or more major tests.
-The output columns are:
- 
- - `_UUID`: Unique identifier for each interview
- - `Internal_ID`: Internal identifier for the interview
- - `Date`: Date of the interivew
- - `Interviewer_ID`: ID of the interview
- - `Interviewer_Name`: Name of the interviewer
- - `Reasons`: Details about the reasons for failure, such as being too short, having high missingness, etc.
+`refield_report` is a data frame that provides information about interviews that failed one or more major tests. It includes reasons for failure, such as being too short, having high missingness, etc.
+
 
 ## `refield_validation_results`
 

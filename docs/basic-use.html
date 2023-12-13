@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Basic Use | autovalid package guide</title>
-  <meta name="description" content="Chapter 2 Basic Use | autovalid package guide" />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <title>Chapter 1 Basic Use | autovalid package guide</title>
+  <meta name="description" content="Chapter 1 Basic Use | autovalid package guide" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Basic Use | autovalid package guide" />
+  <meta property="og:title" content="Chapter 1 Basic Use | autovalid package guide" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Basic Use | autovalid package guide" />
+  <meta name="twitter:title" content="Chapter 1 Basic Use | autovalid package guide" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="MaryClare Roche" />
 
 
-<meta name="date" content="2023-09-26" />
+<meta name="date" content="2023-12-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -136,27 +140,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">autovalid guide</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Package &amp; Guide Overview</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Package &amp; Guide Overview</a></li>
 <li class="part"><span><b>I General Use</b></span></li>
-<li class="chapter" data-level="2" data-path="basic-use.html"><a href="basic-use.html"><i class="fa fa-check"></i><b>2</b> Basic Use</a></li>
-<li class="part"><span><b>II Understanding <code>autovalid()</code> Output</b></span></li>
-<li class="chapter" data-level="3" data-path="output-overview.html"><a href="output-overview.html"><i class="fa fa-check"></i><b>3</b> Output Overview</a>
+<li class="chapter" data-level="1" data-path="basic-use.html"><a href="basic-use.html"><i class="fa fa-check"></i><b>1</b> Basic Use</a></li>
+<li class="part"><span><b>II Understanding <code>prep_data()</code> Output</b></span></li>
+<li class="chapter" data-level="2" data-path="output-overview.html"><a href="output-overview.html"><i class="fa fa-check"></i><b>2</b> Output Overview</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="output-overview.html"><a href="output-overview.html#validation"><i class="fa fa-check"></i><b>3.1</b> <code>validation</code></a>
+<li class="chapter" data-level="2.1" data-path="output-overview.html"><a href="output-overview.html#pre_data"><i class="fa fa-check"></i><b>2.1</b> <code>pre_data</code></a></li>
+<li class="chapter" data-level="2.2" data-path="output-overview.html"><a href="output-overview.html#csv_data"><i class="fa fa-check"></i><b>2.2</b> <code>csv_data</code></a></li>
+<li class="chapter" data-level="2.3" data-path="output-overview.html"><a href="output-overview.html#aud_data"><i class="fa fa-check"></i><b>2.3</b> <code>aud_data</code></a></li>
+<li class="chapter" data-level="2.4" data-path="output-overview.html"><a href="output-overview.html#duplicated_interviews"><i class="fa fa-check"></i><b>2.4</b> <code>duplicated_interviews</code></a></li>
+<li class="chapter" data-level="2.5" data-path="output-overview.html"><a href="output-overview.html#nonvalid"><i class="fa fa-check"></i><b>2.5</b> <code>nonvalid</code></a></li>
+</ul></li>
+<li class="part"><span><b>III Understanding <code>autovalid()</code> Output</b></span></li>
+<li class="chapter" data-level="3" data-path="output-overview-1.html"><a href="output-overview-1.html"><i class="fa fa-check"></i><b>3</b> Output Overview</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="output-overview.html"><a href="output-overview.html#responses"><i class="fa fa-check"></i><b>3.1.1</b> <code>responses</code></a></li>
-<li class="chapter" data-level="3.1.2" data-path="output-overview.html"><a href="output-overview.html#interviewers"><i class="fa fa-check"></i><b>3.1.2</b> <code>interviewers</code></a></li>
-<li class="chapter" data-level="3.1.3" data-path="output-overview.html"><a href="output-overview.html#supervisors"><i class="fa fa-check"></i><b>3.1.3</b> <code>supervisors</code></a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="output-overview.html"><a href="output-overview.html#raw_input"><i class="fa fa-check"></i><b>3.2</b> <code>raw_input</code></a></li>
-<li class="chapter" data-level="3.3" data-path="output-overview.html"><a href="output-overview.html#composite"><i class="fa fa-check"></i><b>3.3</b> <code>composite</code></a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="output-name-conventions.html"><a href="output-name-conventions.html"><i class="fa fa-check"></i><b>4</b> Output Name Conventions</a>
+<li class="chapter" data-level="3.1" data-path="output-overview-1.html"><a href="output-overview-1.html#validation"><i class="fa fa-check"></i><b>3.1</b> <code>validation</code></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="output-name-conventions.html"><a href="output-name-conventions.html#check_-variables"><i class="fa fa-check"></i><b>4.1</b> <code>CHECK_</code> Variables</a></li>
-<li class="chapter" data-level="4.2" data-path="output-name-conventions.html"><a href="output-name-conventions.html#score_-variables"><i class="fa fa-check"></i><b>4.2</b> <code>SCORE_</code> Variables</a></li>
+<li class="chapter" data-level="3.1.1" data-path="output-overview-1.html"><a href="output-overview-1.html#responses"><i class="fa fa-check"></i><b>3.1.1</b> <code>responses</code></a></li>
+<li class="chapter" data-level="3.1.2" data-path="output-overview-1.html"><a href="output-overview-1.html#interviewers"><i class="fa fa-check"></i><b>3.1.2</b> <code>interviewers</code></a></li>
+<li class="chapter" data-level="3.1.3" data-path="output-overview-1.html"><a href="output-overview-1.html#supervisors"><i class="fa fa-check"></i><b>3.1.3</b> <code>supervisors</code></a></li>
 </ul></li>
-<li class="part"><span><b>III Validation Test Categories</b></span></li>
+<li class="chapter" data-level="3.2" data-path="output-overview-1.html"><a href="output-overview-1.html#raw_input"><i class="fa fa-check"></i><b>3.2</b> <code>raw_input</code></a></li>
+<li class="chapter" data-level="3.3" data-path="output-overview-1.html"><a href="output-overview-1.html#composite"><i class="fa fa-check"></i><b>3.3</b> <code>composite</code></a></li>
+<li class="chapter" data-level="3.4" data-path="output-overview-1.html"><a href="output-overview-1.html#check_-variables"><i class="fa fa-check"></i><b>3.4</b> <code>CHECK_</code> Variables</a></li>
+<li class="chapter" data-level="3.5" data-path="output-overview-1.html"><a href="output-overview-1.html#score_-variables"><i class="fa fa-check"></i><b>3.5</b> <code>SCORE_</code> Variables</a></li>
+</ul></li>
+<li class="part"><span><b>IV Understanding <code>parse_for_major_flags()</code> Output</b></span></li>
+<li class="chapter" data-level="4" data-path="function-parameters.html"><a href="function-parameters.html"><i class="fa fa-check"></i><b>4</b> Function Parameters</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="function-parameters.html"><a href="function-parameters.html#timer_fail_count"><i class="fa fa-check"></i><b>4.1</b> <code>timer_fail_count</code></a></li>
+<li class="chapter" data-level="4.2" data-path="function-parameters.html"><a href="function-parameters.html#thresh_max_miss"><i class="fa fa-check"></i><b>4.2</b> <code>thresh_max_miss</code></a></li>
+<li class="chapter" data-level="4.3" data-path="function-parameters.html"><a href="function-parameters.html#thresh_max_pct"><i class="fa fa-check"></i><b>4.3</b> <code>thresh_max_pct</code></a></li>
+<li class="chapter" data-level="4.4" data-path="function-parameters.html"><a href="function-parameters.html#do_timer"><i class="fa fa-check"></i><b>4.4</b> <code>do_timer</code></a></li>
+<li class="chapter" data-level="4.5" data-path="function-parameters.html"><a href="function-parameters.html#do_variance"><i class="fa fa-check"></i><b>4.5</b> <code>do_variance</code></a></li>
+<li class="chapter" data-level="4.6" data-path="function-parameters.html"><a href="function-parameters.html#do_percent_match"><i class="fa fa-check"></i><b>4.6</b> <code>do_percent_match</code></a></li>
+<li class="chapter" data-level="4.7" data-path="function-parameters.html"><a href="function-parameters.html#do_missingness"><i class="fa fa-check"></i><b>4.7</b> <code>do_missingness</code></a></li>
+<li class="chapter" data-level="4.8" data-path="function-parameters.html"><a href="function-parameters.html#do_location"><i class="fa fa-check"></i><b>4.8</b> <code>do_location</code></a></li>
+<li class="chapter" data-level="4.9" data-path="function-parameters.html"><a href="function-parameters.html#refield_report"><i class="fa fa-check"></i><b>4.9</b> <code>refield_report</code></a></li>
+<li class="chapter" data-level="4.10" data-path="function-parameters.html"><a href="function-parameters.html#refield_validation_results"><i class="fa fa-check"></i><b>4.10</b> <code>refield_validation_results</code></a></li>
+<li class="chapter" data-level="4.11" data-path="function-parameters.html"><a href="function-parameters.html#refield_interviews"><i class="fa fa-check"></i><b>4.11</b> <code>refield_interviews</code></a></li>
+</ul></li>
+<li class="part"><span><b>V Validation Test Categories</b></span></li>
 <li class="chapter" data-level="5" data-path="timer-checks.html"><a href="timer-checks.html"><i class="fa fa-check"></i><b>5</b> Timer Checks</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="timer-checks.html"><a href="timer-checks.html#understanding-the-four-timers"><i class="fa fa-check"></i><b>5.1</b> Understanding the Four Timers</a>
@@ -187,6 +212,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="percent-match.html"><a href="percent-match.html#changing-defaults-1"><i class="fa fa-check"></i><b>8.1</b> Changing Defaults</a></li>
 <li class="chapter" data-level="8.2" data-path="percent-match.html"><a href="percent-match.html#result-columns-3"><i class="fa fa-check"></i><b>8.2</b> Result Columns</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="location-checks.html"><a href="location-checks.html"><i class="fa fa-check"></i><b>9</b> Location Checks</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="location-checks.html"><a href="location-checks.html#always-included-checks"><i class="fa fa-check"></i><b>9.1</b> Always Included Checks</a></li>
+<li class="chapter" data-level="9.2" data-path="location-checks.html"><a href="location-checks.html#potential-additional-checks"><i class="fa fa-check"></i><b>9.2</b> Potential Additional Checks</a></li>
+<li class="chapter" data-level="9.3" data-path="location-checks.html"><a href="location-checks.html#changing-defaults-2"><i class="fa fa-check"></i><b>9.3</b> Changing Defaults</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="location-checks.html"><a href="location-checks.html#always"><i class="fa fa-check"></i><b>9.3.1</b> Always</a></li>
+<li class="chapter" data-level="9.3.2" data-path="location-checks.html"><a href="location-checks.html#additional-parameters"><i class="fa fa-check"></i><b>9.3.2</b> Additional Parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="location-checks.html"><a href="location-checks.html#result-columns-4"><i class="fa fa-check"></i><b>9.4</b> Result Columns</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -206,8 +242,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basic-use" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Basic Use<a href="basic-use.html#basic-use" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="basic-use" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Basic Use<a href="basic-use.html#basic-use" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This chapter sheds light on how to use the <code>autovalid</code> package at the most basic
 level.</p>
 <p>There are four steps to run all the validation tests in <code>autovalid</code>.</p>
@@ -216,32 +252,38 @@ level.</p>
 <ul>
 <li>These libraries are <code>readxl</code> and <code>autovalid</code>.</li>
 </ul></li>
-<li>Load the raw data and save the path to the zip files.
-<ul>
-<li>The zip files are NOT loaded. Only save the path.</li>
-</ul></li>
+<li>Load the raw data and location data.</li>
 <li>Use the <code>prep_data()</code> function from <code>autovalid</code> to create the object that will be used for validation.</li>
 <li>Run the <code>autovalid()</code> function on the output of <code>prep_data()</code>.
+<ul>
+<li>The zip files are NOT loaded. Only save the path.</li>
+<li>Make sure to save the output to an object.</li>
+</ul></li>
+<li>Run the <code>parse_for_major_flags()</code> function on the output of <code>autovalid()</code>.
 <ul>
 <li>Make sure to save the output to an object.</li>
 </ul></li>
 </ol>
-<p>The output of the function <code>autovalid()</code> contains the results of all the validation tests.</p>
-<p>Ultimately, if you follow the four steps, your code should follow the example of the following code block:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="basic-use.html#cb1-1" aria-hidden="true" tabindex="-1"></a>     <span class="co">#.........................Load Libraries.........................</span></span>
-<span id="cb1-2"><a href="basic-use.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-3"><a href="basic-use.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(autovalid)</span>
-<span id="cb1-4"><a href="basic-use.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="basic-use.html#cb1-5" aria-hidden="true" tabindex="-1"></a>     <span class="co">#......................Load data and paths.......................</span></span>
-<span id="cb1-6"><a href="basic-use.html#cb1-6" aria-hidden="true" tabindex="-1"></a>raw_country_data <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">&quot;path/to/raw/data.xlsx&quot;</span>)</span>
-<span id="cb1-7"><a href="basic-use.html#cb1-7" aria-hidden="true" tabindex="-1"></a>audit_files <span class="ot">&lt;-</span> <span class="st">&quot;path/to/audits.zip&quot;</span></span>
-<span id="cb1-8"><a href="basic-use.html#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="basic-use.html#cb1-9" aria-hidden="true" tabindex="-1"></a>     <span class="co">#..........................Prep the data.........................</span></span>
-<span id="cb1-10"><a href="basic-use.html#cb1-10" aria-hidden="true" tabindex="-1"></a>prepped_data <span class="ot">&lt;-</span> <span class="fu">prep_data</span>(raw_country_data,</span>
-<span id="cb1-11"><a href="basic-use.html#cb1-11" aria-hidden="true" tabindex="-1"></a>                          audit_files)</span>
-<span id="cb1-12"><a href="basic-use.html#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="basic-use.html#cb1-13" aria-hidden="true" tabindex="-1"></a>     <span class="co">#..........................Run autovalid.........................</span></span>
-<span id="cb1-14"><a href="basic-use.html#cb1-14" aria-hidden="true" tabindex="-1"></a>validation_output <span class="ot">&lt;-</span> <span class="fu">autovalid</span>(prepped_data)</span></code></pre></div>
+<p>The output of the function <code>autovalid()</code> contains the results of all the validation tests. The output of the function parse_for_major_flags()` contains the results of all the major flag tests.</p>
+<p>Ultimately, if you follow the five steps, your code should follow the example of the following code block:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="basic-use.html#cb1-1" tabindex="-1"></a>     <span class="co">#.........................Load Libraries.........................</span></span>
+<span id="cb1-2"><a href="basic-use.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="basic-use.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(autovalid)</span>
+<span id="cb1-4"><a href="basic-use.html#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="basic-use.html#cb1-5" tabindex="-1"></a>     <span class="co">#......................Load data and paths.......................</span></span>
+<span id="cb1-6"><a href="basic-use.html#cb1-6" tabindex="-1"></a>raw_country_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">&quot;path/to/raw/data.xlsx&quot;</span>)</span>
+<span id="cb1-7"><a href="basic-use.html#cb1-7" tabindex="-1"></a>gps_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">&quot;path/to/gps/data.xlsx&quot;</span>)</span>
+<span id="cb1-8"><a href="basic-use.html#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="basic-use.html#cb1-9" tabindex="-1"></a>     <span class="co">#..........................Prep the data.........................</span></span>
+<span id="cb1-10"><a href="basic-use.html#cb1-10" tabindex="-1"></a>prepped_data <span class="ot">&lt;-</span> <span class="fu">prep_data</span>(<span class="at">raw_data =</span> raw_country_data,</span>
+<span id="cb1-11"><a href="basic-use.html#cb1-11" tabindex="-1"></a>                          <span class="at">aud_path =</span> <span class="st">&quot;path/to/audits.zip&quot;</span>)</span>
+<span id="cb1-12"><a href="basic-use.html#cb1-12" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="basic-use.html#cb1-13" tabindex="-1"></a>     <span class="co">#..........................Run autovalid.........................</span></span>
+<span id="cb1-14"><a href="basic-use.html#cb1-14" tabindex="-1"></a>validation_output <span class="ot">&lt;-</span> <span class="fu">autovalid</span>(prepped_data,</span>
+<span id="cb1-15"><a href="basic-use.html#cb1-15" tabindex="-1"></a>                               <span class="at">location_data =</span> gps_data)</span>
+<span id="cb1-16"><a href="basic-use.html#cb1-16" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="basic-use.html#cb1-17" tabindex="-1"></a>     <span class="co">#......................Run major flag checks.....................                               </span></span>
+<span id="cb1-18"><a href="basic-use.html#cb1-18" tabindex="-1"></a>flags_output <span class="ot">&lt;-</span> <span class="fu">parse_for_major_flags</span>(validation_output)  </span></code></pre></div>
 <p>Now that we have the results, we need to know how to understand them. A majority of the rest of the guide is dedicated to explaining the output of the <code>autovalid()</code> function.</p>
 
 </div>

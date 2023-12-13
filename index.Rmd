@@ -1,5 +1,5 @@
 --- 
-title: "`autovalid` package guide"
+title: '`autovalid` package guide'
 author: "MaryClare Roche"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

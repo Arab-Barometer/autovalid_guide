@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Output Name Conventions | autovalid package guide</title>
-  <meta name="description" content="Chapter 4 Output Name Conventions | autovalid package guide" />
+  <title>Chapter 3 Output Overview | autovalid package guide</title>
+  <meta name="description" content="Chapter 3 Output Overview | autovalid package guide" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Output Name Conventions | autovalid package guide" />
+  <meta property="og:title" content="Chapter 3 Output Overview | autovalid package guide" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Output Name Conventions | autovalid package guide" />
+  <meta name="twitter:title" content="Chapter 3 Output Overview | autovalid package guide" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="output-overview-1.html"/>
-<link rel="next" href="function-parameters.html"/>
+<link rel="prev" href="output-overview.html"/>
+<link rel="next" href="output-name-conventions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -245,32 +245,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="output-name-conventions" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Output Name Conventions<a href="output-name-conventions.html#output-name-conventions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>When exploring the output of <code>autovalid()</code>, you will see many variables that beging with <code>CHECK_</code> or <code>SCORE_</code>. These prefixes tell you a bit about the variable.</p>
-<div id="check_-variables" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> <code>CHECK_</code> Variables<a href="output-name-conventions.html#check_-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Variables that begin with the prefix <code>CHECK_</code> are logicals, meaning the entire column is <code>TRUE</code>, <code>FALSE</code>, or occasionally <code>NA</code>.</p>
-<p>The question the variable is asking is “Is this check passed?” If the result is <code>TRUE</code>, the check is passed. If the result is <code>FALSE</code>, the check is failed. Interviews, enumerators, or supervisors flagged by <code>autovalid()</code> will have a lot of <code>FALSE</code> results.</p>
-<p>For example, the variable <code>CHECK_TIMER1_ABOVE_MIN</code> asks if Timer 1 is above the minimum time threshold. If <code>CHECK_TIMER1_ABOVE_MIN</code> is <code>TRUE</code>, the interview is over the minimum time threshold. If <code>CHECK_TIMER1_ABOVE_MIN</code> is <code>FALSE</code>, the interview is below the minimum time threshold.</p>
+<div id="output-overview-1" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Output Overview<a href="output-overview-1.html#output-overview-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter describes the output of the <code>autovalid()</code> function. The output of <code>autovalid()</code> is a slightly complex structure; it is a nested list. That is, the output is a list that contains a list. To help understand the output, all the elements are labeled.</p>
+<p>The overall output of <code>autovalid()</code> is a list of three objects called <strong><code>validation</code></strong>, <strong><code>raw_input</code></strong>, and <strong><code>composite</code></strong>. The latter two objects, <code>raw_input</code> and <code>composite</code>, are data frames. The object <strong><code>validation</code></strong> is a list of three more objects called <strong><code>responses</code></strong>, <strong><code>interviewers</code></strong>, and <strong><code>supervisors</code></strong>. Each of the objects in the <code>validation</code> list are data frames.</p>
+<p>The output looks like this list:</p>
+<ul>
+<li><strong><code>validation</code></strong> (list)
+<ul>
+<li><strong><code>responses</code></strong> (data frame)</li>
+<li><strong><code>interviewers</code></strong> (data frame)</li>
+<li><strong><code>supervisors</code></strong> (data frame)</li>
+</ul></li>
+<li><strong><code>raw_input</code></strong> (data frame)</li>
+<li><strong><code>composite</code></strong> (data frame)</li>
+</ul>
+<p>The next sections look at each of the objects <code>autovalid()</code> returns.</p>
+<div id="validation" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> <code>validation</code><a href="output-overview-1.html#validation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As previously mentioned, <code>validation</code> is a list of three data frames. Each of the data frames is a set of validation test results.</p>
+<div id="responses" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> <code>responses</code><a href="output-overview-1.html#responses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>responses</code> data frame contains all the interview-level checks run by <code>autovalid()</code>, as well as the <code>_UUID</code>, enumerator ID, supervisor ID, and group split the interview belonged to.</p>
 </div>
-<div id="score_-variables" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> <code>SCORE_</code> Variables<a href="output-name-conventions.html#score_-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Variables that begin with the prefix <code>SCORE_</code> are numeric and always fall between 0 and 1. This is because they are the mean of the all the <code>CHECK_</code> variables in a category of validation tests. The category can be told by what follows <code>SCORE_</code>. For example, <code>SCORE_LOGIC</code> is the mean of all the logic validation tests that begin with <code>CHECK_</code>.</p>
-<p>Recall that the <code>CHECK_</code> variables are all logicals. To computers, <code>TRUE</code> is 1 and <code>FALSE</code> is 0. The higher the <code>SCORE_</code> variable, the more checks the interview, enumerator, or supervisor passed.</p>
-
+<div id="interviewers" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> <code>interviewers</code><a href="output-overview-1.html#interviewers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>interviewers</code> data frame contains all the enumerator-level checks run by <code>autovalid()</code>, as well as enumerator ID, supervisor ID, and group split the interview belonged to. Most of these checks are the mean of the interview-level checks aggregated by enumerator.</p>
+</div>
+<div id="supervisors" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> <code>supervisors</code><a href="output-overview-1.html#supervisors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>supervisors</code> data frame contains all the supervisor-level checks run by <code>autovalid()</code>, as well as supervisor ID, and group split the interview belonged to. Most of these checks are the mean of the interview-level checks aggregated by supervisor.</p>
 </div>
 </div>
-
-
-
+<div id="raw_input" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> <code>raw_input</code><a href="output-overview-1.html#raw_input" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>raw_input</code> data frame is the condensed version of the raw data downloaded from KoboToolbox with non-valid interviews filtered out.</p>
+<p>The raw data downloaded from KoboToolbox has several “extra” columns from our efforts at randomization. The <code>raw_input</code> data frame collapses all these columns into one variable as appropriate.</p>
+<p>The <code>raw_input</code> only contains unique interviews the enumerator marks as “complete”.</p>
+</div>
+<div id="composite" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> <code>composite</code><a href="output-overview-1.html#composite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>composite</code> data frame is a data frame that contains all the interview responses from <code>raw_input</code> and all the interview-level tests from <code>validation$responses</code>. It is a result of joining the two data frame by <code>_UUID</code>.</p>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="output-overview-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="function-parameters.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="output-overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="output-name-conventions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
