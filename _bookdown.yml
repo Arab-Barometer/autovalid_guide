@@ -8,7 +8,9 @@ language:
     chapter_name: "Chapter "
 rmd_files: ["index.Rmd",
             "basic-use.Rmd",
+            "prep_data.Rmd",
             "understanding_output.Rmd",
+            "parse_for_major_flags.Rmd",
             "timer-checks.Rmd",
             "variance-checks.Rmd",
             "missingness-checks.Rmd",
