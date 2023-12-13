@@ -8,15 +8,17 @@ There are four steps to run all the validation tests in `autovalid`.
 
 1. Load the necessary libraries.
     - These libraries are `readxl` and `autovalid`.
-2. Load the raw data and save the path to the zip files.
-    - The zip files are NOT loaded. Only save the path.
+2. Load the raw data and location data.
 3. Use the `prep_data()` function from `autovalid` to create the object that will be used for validation.
 4. Run the `autovalid()` function on the output of `prep_data()`.
-    - Make sure to save the output to an object.
-  
-The output of the function `autovalid()` contains the results of all the validation tests.
+     - The zip files are NOT loaded. Only save the path.
+     - Make sure to save the output to an object.
+5. Run the `parse_for_major_flags()` function on the output of `autovalid()`.
+     - Make sure to save the output to an object.
 
-Ultimately, if you follow the four steps, your code should follow the example of the following code block:
+The output of the function `autovalid()` contains the results of all the validation tests. The output of the function parse_for_major_flags()` contains the results of all the major flag tests.
+
+Ultimately, if you follow the five steps, your code should follow the example of the following code block:
 
 ```{r basic-use-1,eval=FALSE}
 
@@ -25,15 +27,19 @@ library(readxl)
 library(autovalid)
 
      #......................Load data and paths.......................
-raw_country_data <- read_xls("path/to/raw/data.xlsx")
-audit_files <- "path/to/audits.zip"
+raw_country_data <- read_xlsx("path/to/raw/data.xlsx")
+gps_data <- read_xlsx("path/to/gps/data.xlsx")
 
      #..........................Prep the data.........................
-prepped_data <- prep_data(raw_country_data,
-                          audit_files)
+prepped_data <- prep_data(raw_data = raw_country_data,
+                          aud_path = "path/to/audits.zip")
 
      #..........................Run autovalid.........................
-validation_output <- autovalid(prepped_data)
+validation_output <- autovalid(prepped_data,
+                               location_data = gps_data)
+
+     #......................Run major flag checks.....................                               
+flags_output <- parse_for_major_flags(validation_output)  
 
 ```
 

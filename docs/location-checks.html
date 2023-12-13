@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Timer Checks | autovalid package guide</title>
-  <meta name="description" content="Chapter 7 Timer Checks | autovalid package guide" />
+  <title>Chapter 11 Location Checks | autovalid package guide</title>
+  <meta name="description" content="Chapter 11 Location Checks | autovalid package guide" />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Timer Checks | autovalid package guide" />
+  <meta property="og:title" content="Chapter 11 Location Checks | autovalid package guide" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Timer Checks | autovalid package guide" />
+  <meta name="twitter:title" content="Chapter 11 Location Checks | autovalid package guide" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="output-overview-2.html"/>
-<link rel="next" href="varaince-checks.html"/>
+<link rel="prev" href="percent-match.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -248,103 +248,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="timer-checks" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Timer Checks<a href="timer-checks.html#timer-checks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The <code>autovalid()</code> function performs ten checks related to time and gives an overall score. The results are in the columns:</p>
+<div id="location-checks" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Location Checks<a href="location-checks.html#location-checks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The <code>autovalid()</code> function performs <strong>four</strong> location checks by default. Two more location checks can be preformed if additional data is provided. These checks are:</p>
 <ul>
-<li><strong><code>CHECK_TIMER1_AFTER_9AM</code></strong></li>
-<li><strong><code>CHECK_TIMER1_BEFORE_8PM</code></strong></li>
-<li><strong><code>CHECK_TIMER1_ABOVE_MIN</code></strong></li>
-<li><strong><code>CHECK_TIMER1_BELOW_MAX</code></strong></li>
-<li><strong><code>CHECK_TIMER2_ABOVE_MIN</code></strong></li>
-<li><strong><code>CHECK_TIMER2_BELOW_MAX</code></strong></li>
-<li><strong><code>CHECK_TIMER3_ABOVE_MIN</code></strong></li>
-<li><strong><code>CHECK_TIMER3_BELOW_MAX</code></strong></li>
-<li><strong><code>CHECK_TIMER4_ABOVE_MIN</code></strong></li>
-<li><strong><code>CHECK_TIMER4_BELOW_MAX</code></strong></li>
-<li><strong><code>SCORE_TIMER</code></strong></li>
+<li><code>CHECK_HAS_SURVEY_GPS</code> (always included)</li>
+<li><code>CHECK_HAS_AUDIT_GPS</code> (always included)</li>
+<li><code>CHECK_AUDIT2SURVEY</code> (always included)</li>
+<li><code>CHECK_POSITION_CHANGE</code> (always included)</li>
+<li><code>CHECK_CENTER2SURVEY</code> (need additional data)</li>
+<li><code>CHECK_CENTER2AUDIT</code> (need additional data)</li>
 </ul>
-<div id="understanding-the-four-timers" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Understanding the Four Timers<a href="timer-checks.html#understanding-the-four-timers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><code>autovalid()</code> uses four different measures of time to calculate the length of a survey. These timers are called <code>TIMER1</code>, <code>TIMER2</code>, <code>TIMER3</code>, and <code>TIMER4</code>.</p>
-<div id="timer1" class="section level3 hasAnchor" number="7.1.1">
-<h3><span class="header-section-number">7.1.1</span> <code>TIMER1</code><a href="timer-checks.html#timer1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><code>TIMER1</code> is calculated from the <code>start</code> and <code>end</code> time recorded in the survey.
-These times are found in the raw data.</p>
-<p>The other three timers are all calculated from the audit files.</p>
+<p>Anytime a distance calculation is preformed, the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine distance formula</a> is used.</p>
+<div id="always-included-checks" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Always Included Checks<a href="location-checks.html#always-included-checks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Four checks are always run by <code>autovalid()</code>. They are <code>CHECK_HAS_SURVEY_GPS</code>, <code>CHECK_HAS_AUDIT_GPS</code>, <code>CHECK_AUDIT2SURVEY</code>, and <code>CHECK_POSITION_CHANGE</code>.</p>
+<p>The variables <code>CHECK_HAS_*_GPS</code> report whether GPS has been recorded by the survey and the audit file.</p>
+<p>If both the survey and the audit file have GPS records, the variable <code>CHECK_AUDIT2SURVEY</code> reports whether the two points are within 50 meters of each other using the Haversine formula.</p>
+<p>If the audit file has GPS records, <code>CHECK_POSITION_CHANGE</code> reports whether the enumerator moved more than 100 meters from when the interview began to when it finished.</p>
 </div>
-<div id="timer2" class="section level3 hasAnchor" number="7.1.2">
-<h3><span class="header-section-number">7.1.2</span> <code>TIMER2</code><a href="timer-checks.html#timer2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><code>TIMER2</code> is calculated using the last recorded <code>start</code> and first recorded <code>start</code> in the associated interview’s audit file.</p>
-<p>All elements in an audit file have a <code>start</code> value, but not all have an <code>end</code> value, so that is why only values from the <code>start</code> column are used.</p>
+<div id="potential-additional-checks" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Potential Additional Checks<a href="location-checks.html#potential-additional-checks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If location data is provided, two more location checks can be preformed. They are <code>CHECK_CENTER2SURVEY</code> and <code>CHECK_CENTER2AUDIT</code>.</p>
+<p>The location data provided must include the block ID and coordinates in longitude and latitude for the center of the block ID. If the additional location data is provided, <code>CHECK_CENTER2SURVEY</code> and <code>CHECK_CENTER2AUDIT</code> report whether the interview is less than 500 meters from an urban block center or less than 1000 meters from a rural block center.</p>
 </div>
-<div id="timer3" class="section level3 hasAnchor" number="7.1.3">
-<h3><span class="header-section-number">7.1.3</span> <code>TIMER3</code><a href="timer-checks.html#timer3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><code>TIMER3</code> is calculated using the sum of the time spent on each page of the survey, according to the audit file.</p>
-<p>Once the survey and audit file timers start, they do not stop. If an interviewer leaves a survey and returns to it the duration of the survey may appear longer than it actually was. This timer does not include such pauses.</p>
-</div>
-<div id="timer4" class="section level3 hasAnchor" number="7.1.4">
-<h3><span class="header-section-number">7.1.4</span> <code>TIMER4</code><a href="timer-checks.html#timer4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><code>TIMER4</code> is calculated using the sum of the time spent on each page of the survey for questions that are between the first and last substantive question.</p>
-<p>By default, the first substantive question is set to <code>"Q2061A"</code> and the last substantive question is determined as the last question that begins with <code>"Q"</code>.</p>
-</div>
-</div>
-<div id="time-of-day" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> Time of Day<a href="timer-checks.html#time-of-day" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><code>autovalid()</code> uses the time recorded in the survey to determine whether the interview took place after 9am and before 8pm.</p>
-</div>
-<div id="minmax-length" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> Min/Max Length<a href="timer-checks.html#minmax-length" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The variables called <code>CHECK_TIMERX_ABOVE_MIN</code> and <code>CHECK_TIMERX_BELOW_MAX</code>, where <code>X</code> is 1 through 4, are all logicals telling the user whether the timer in question recorded a time above the minimum time and below the maximum time, respectively. By default, the minimum time is set to 30 minutes and the maximum time is set to 75 minutes.</p>
-</div>
-<div id="score_timer" class="section level2 hasAnchor" number="7.4">
-<h2><span class="header-section-number">7.4</span> <code>SCORE_TIMER</code><a href="timer-checks.html#score_timer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <code>SCORE_TIMER</code> variable calculates the mean of all the check variables.</p>
-</div>
-<div id="changing-defaults" class="section level2 hasAnchor" number="7.5">
-<h2><span class="header-section-number">7.5</span> Changing Defaults<a href="timer-checks.html#changing-defaults" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are <strong>four</strong> arguments in <code>autovalid()</code> that can be used to change the defaults for the timer checks. They are:</p>
+<div id="changing-defaults-2" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Changing Defaults<a href="location-checks.html#changing-defaults-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="always" class="section level3 hasAnchor" number="11.3.1">
+<h3><span class="header-section-number">11.3.1</span> Always<a href="location-checks.html#always" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are two arguments in <code>autovalid()</code> for location checks that are always run.</p>
 <ul>
-<li><code>thresh_opening</code>: The earliest time of day an interview should begin.
+<li><code>thresh_max_as</code> : The maximum distance in meters the <strong>a</strong>udit file GPS and <strong>s</strong>urvey GPS can be from each other.
 <ul>
-<li>Use a 24 hour clock time.</li>
-<li>Default is <code>9</code>.</li>
-<li>Associated with <code>CHECK_TIMER1_AFTER_9AM</code>.</li>
-<li>NOTE: Even if you change the default, the variable name will <strong>not</strong> change. It will still say <code>CHECK_TIMER1_AFTER_9AM</code>.</li>
+<li>Use an integer.</li>
+<li>Defaults to <code>50</code>.</li>
 </ul></li>
-<li><code>thresh_closing</code>: The latest time of day an interview should begin.
+<li><code>thresh_max_pos_change</code> : The maximum distance in meters between the start and end of an interview as recorded by the audit file.
 <ul>
-<li>Use a 24 hour clock time.</li>
-<li>Default is <code>20</code>.</li>
-<li>Associated with <code>CHECK_TIMER1_BEFORE_8PM</code>.</li>
-<li>NOTE: Even if you change the default, the variable name will <strong>not</strong> change. It will still say <code>CHECK_TIMER1_BEFORE_8PM</code>.</li>
-</ul></li>
-<li><code>thresh_min_len</code>: The minimum amount of time in minutes an interview should take.
-<ul>
-<li>Use a positive integer.</li>
-<li>Default is <code>30</code>.</li>
-<li>Associated with <code>CHECK_TIMERX_ABOVE_MIN</code>, where <code>X</code> is 1 through 4.</li>
-</ul></li>
-<li><code>thresh_max_len</code>: The maximum amount of time in minutes an interview should take.
-<ul>
-<li>Use a positive integer.</li>
-<li>Default is <code>75</code>.</li>
-<li>Associated with <code>CHECK_TIMERX_BELOW_MAX</code>, where <code>X</code> is 1 through 4.</li>
+<li>Use an integer.</li>
+<li>Defaults to <code>100</code>.</li>
 </ul></li>
 </ul>
-<p>The following is an example of changing the defaults in <code>autovalid()</code> for the timer checks. The object <code>prepped_data</code> is the output of the <code>prep_data()</code> function. See <a href="basic-use.html#basic-use">Chapter 2</a> for a refresher.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="timer-checks.html#cb2-1" tabindex="-1"></a><span class="fu">autovalid</span>(prepped_data,</span>
-<span id="cb2-2"><a href="timer-checks.html#cb2-2" tabindex="-1"></a>          <span class="at">thresh_opening =</span> <span class="dv">8</span>, <span class="co"># Does the interview take place after 8am?</span></span>
-<span id="cb2-3"><a href="timer-checks.html#cb2-3" tabindex="-1"></a>          <span class="at">thresh_closing =</span> <span class="dv">16</span>, <span class="co"># Does the interview take place before 4pm?</span></span>
-<span id="cb2-4"><a href="timer-checks.html#cb2-4" tabindex="-1"></a>          <span class="at">thresh_min_len =</span> <span class="dv">20</span>, <span class="co"># Does the interview take longer than 20 minutes?</span></span>
-<span id="cb2-5"><a href="timer-checks.html#cb2-5" tabindex="-1"></a>          <span class="at">thresh_max_len =</span> <span class="dv">120</span> <span class="co"># Does the interview take less than 2 hours?</span></span>
-<span id="cb2-6"><a href="timer-checks.html#cb2-6" tabindex="-1"></a>          )</span></code></pre></div>
+<p>The following is an example of changing the defaults in <code>autovalid()</code> for the location checks. The object <code>prepped_data</code> is the output of the <code>prep_data()</code> function. See <a href="basic-use.html#basic-use">Chapter 2</a> for a refresher.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="location-checks.html#cb5-1" tabindex="-1"></a><span class="fu">autovalid</span>(prepped_data,</span>
+<span id="cb5-2"><a href="location-checks.html#cb5-2" tabindex="-1"></a>          <span class="at">thresh_max_as =</span> <span class="dv">10</span>, <span class="co"># Are the survey and audit recordings within 10 meters of each other?</span></span>
+<span id="cb5-3"><a href="location-checks.html#cb5-3" tabindex="-1"></a>          <span class="at">thresh_max_pos_change =</span> <span class="dv">200</span>, <span class="co"># Did the interview move less than 200 meters from start to finish?</span></span>
+<span id="cb5-4"><a href="location-checks.html#cb5-4" tabindex="-1"></a>          )</span></code></pre></div>
 </div>
-<div id="result-columns" class="section level2 hasAnchor" number="7.6">
-<h2><span class="header-section-number">7.6</span> Result Columns<a href="timer-checks.html#result-columns" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are an additional six column that are related to the timer checks that can be thought of as the “result columns”. They are <code>TIMER1</code>, <code>TIMER2</code>, <code>TIMER3</code>, <code>TIMER4</code>, <code>COUNT_ABOVE_MIN</code> and <code>COUNT_BELOW_MAX</code>.</p>
-<p>The first four simply record the time of the interview determined by each timer described in the sections above.</p>
-<p>The variables <code>COUNT_ABOVE_MIN</code> and <code>COUNT_BELOW_MAX</code> record the number of timers that pass the minimum and maximum length requirements, respectively.</p>
+<div id="additional-parameters" class="section level3 hasAnchor" number="11.3.2">
+<h3><span class="header-section-number">11.3.2</span> Additional Parameters<a href="location-checks.html#additional-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are <strong>six</strong> arguments in <code>autovalid()</code> for location checks if additional data is provided.</p>
+<ul>
+<li><code>location_data</code> : The name of the additional data file.
+<ul>
+<li><strong>Must be provided to see additional checks.</strong></li>
+<li>MaryClare has included the reference coordinates sent by the partners on the Drive.</li>
+<li>You must load the data as a data frame into R, then supply that data to <code>autovalid()</code> through this argument.</li>
+<li>Defaults to <code>FALSE</code>.</li>
+</ul></li>
+<li><code>bid_col_name</code> : The name of the column containing the Block ID in the supplied data file.
+<ul>
+<li>Defaults to <code>"Block_ID"</code>.</li>
+<li>If you use the data from the Drive provided by the partners and edited by MaryClare, this default is fine.</li>
+<li>If you use a different data source, you must provide the name of the column containing the Block ID.</li>
+</ul></li>
+<li><code>long_col_name</code> : The name of the column containing the longitude in the supplied data file.
+<ul>
+<li>Defaults to <code>"Longitude"</code>.</li>
+<li>If you use the data from the Drive provided by the partners and edited by MaryClare, this default is fine.</li>
+<li>If you use a different data source, you must provide the name of the column containing the longitude.</li>
+</ul></li>
+<li><code>lat_col_name</code> : The name of the column containing the latitude in the supplied data file.
+<ul>
+<li>Defaults to <code>"Latitude"</code>.</li>
+<li>If you use the data from the Drive provided by the partners and edited by MaryClare, this default is fine.</li>
+<li>If you use a different data source, you must provide the name of the column containing the latitude.</li>
+</ul></li>
+<li><code>thresh_max_urban</code> : The furthest an interview can be from the supplied coordinates in an urban area.
+<ul>
+<li>Use an integer.</li>
+<li>Partners may have suggestions for acceptable distances.</li>
+<li>Defaults to <code>500</code>.</li>
+</ul></li>
+<li><code>thresh_max_rural</code> : The furthest an interview can be from the supplied coordinates in an rural area.
+<ul>
+<li>Use an integer.</li>
+<li>Partners may have suggestions for acceptable distances.</li>
+<li>Defaults to <code>1000</code>.</li>
+</ul></li>
+</ul>
+<p>The following is an example of supplying additional location data without changing the defaults in <code>autovalid()</code> for the location checks. The package <code>"readxl"</code> is assumed to be loaded. The object <code>prepped_data</code> is the output of the <code>prep_data()</code> function. See <a href="basic-use.html#basic-use">Chapter 2</a> for a refresher.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="location-checks.html#cb6-1" tabindex="-1"></a>GPS_references <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">&quot;path/to/Drive/location/data.xlsx&quot;</span>) <span class="co"># Loading data MaryClare saved to the Drive.</span></span>
+<span id="cb6-2"><a href="location-checks.html#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="location-checks.html#cb6-3" tabindex="-1"></a><span class="fu">autovalid</span>(prepped_data,</span>
+<span id="cb6-4"><a href="location-checks.html#cb6-4" tabindex="-1"></a>          <span class="at">location_data =</span> GPS_references <span class="co"># Loaded location data MaryClare saved to the Drive.</span></span>
+<span id="cb6-5"><a href="location-checks.html#cb6-5" tabindex="-1"></a>          )</span></code></pre></div>
+<p>The following is an example of supplying additional location data and changing the defaults in <code>autovalid()</code> for the location checks. The package <code>"readxl"</code> is assumed to be loaded. The object <code>prepped_data</code> is the output of the <code>prep_data()</code> function. See <a href="basic-use.html#basic-use">Chapter 2</a> for a refresher.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="location-checks.html#cb7-1" tabindex="-1"></a>GPS_references_other <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">&quot;path/to/Other/location/data.xlsx&quot;</span>) <span class="co"># Loading data some location data.</span></span>
+<span id="cb7-2"><a href="location-checks.html#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="location-checks.html#cb7-3" tabindex="-1"></a><span class="fu">autovalid</span>(prepped_data,</span>
+<span id="cb7-4"><a href="location-checks.html#cb7-4" tabindex="-1"></a>          <span class="at">location_data =</span> GPS_references_other, <span class="co"># Loaded other location data</span></span>
+<span id="cb7-5"><a href="location-checks.html#cb7-5" tabindex="-1"></a>          <span class="at">bid_col_name =</span> <span class="st">&quot;BID_Column_Name&quot;</span>, <span class="co"># Block ID column name in location data</span></span>
+<span id="cb7-6"><a href="location-checks.html#cb7-6" tabindex="-1"></a>          <span class="at">long_col_name =</span> <span class="st">&quot;Longitude_Column_Name&quot;</span>, <span class="co"># Longitude column name in location data</span></span>
+<span id="cb7-7"><a href="location-checks.html#cb7-7" tabindex="-1"></a>          <span class="at">lat_col_name =</span> <span class="st">&quot;Latitdue_Column_Name&quot;</span>, <span class="co"># Latitude column name in location data</span></span>
+<span id="cb7-8"><a href="location-checks.html#cb7-8" tabindex="-1"></a>          <span class="at">thresh_max_urban =</span> <span class="dv">15</span>, <span class="co"># Is the interview within 15m of the central Block ID point for urban areas?</span></span>
+<span id="cb7-9"><a href="location-checks.html#cb7-9" tabindex="-1"></a>          <span class="at">thresh_max_rural =</span> <span class="dv">3000</span> <span class="co"># Is the interview within 3km of the central Block ID point for rural areas?</span></span>
+<span id="cb7-10"><a href="location-checks.html#cb7-10" tabindex="-1"></a>          )</span></code></pre></div>
+</div>
+</div>
+<div id="result-columns-4" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Result Columns<a href="location-checks.html#result-columns-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The actual distance between the audit GPS and the survey GPS, the audit GPS and the location data GPS, and the survey GPS and the location data GPS can be found in the columns <code>AUDIT2SURVEY_DIST</code>, <code>CENTER2AUDIT_DIST</code>, and <code>CENTER2SURVEY_DIST</code>, respectively. The distance is in meters and calculated according to the Haversine formula.</p>
 
 </div>
 </div>
@@ -353,8 +367,8 @@ These times are found in the raw data.</p>
           </div>
         </div>
       </div>
-<a href="output-overview-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="varaince-checks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="percent-match.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -385,7 +399,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/timer-checks.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/location-checks.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -393,7 +407,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/timer-checks.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/location-checks.Rmd",
 "text": null
 },
 "download": null,
