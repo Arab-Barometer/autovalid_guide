@@ -1,6 +1,6 @@
 ---
 title: '`autovalid` package guide'
-author: "MaryClare Roche"
+author: "MaryClare Roche, Warisha Siddiqui"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
