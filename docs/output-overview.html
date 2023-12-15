@@ -6,11 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Output Overview | autovalid package guide</title>
   <meta name="description" content="Chapter 2 Output Overview | autovalid package guide" />
-<<<<<<< HEAD
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
-=======
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
->>>>>>> b8f5662a210bc63d3bb882129dc4a5f7c798c253
 
   <meta property="og:title" content="Chapter 2 Output Overview | autovalid package guide" />
   <meta property="og:type" content="book" />
@@ -24,10 +20,10 @@
   
   
 
-<meta name="author" content="MaryClare Roche" />
+<meta name="author" content="MaryClare Roche, Warisha Siddiqui" />
 
 
-<meta name="date" content="2023-12-13" />
+<meta name="date" content="2023-12-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -35,7 +31,7 @@
   
   
 <link rel="prev" href="basic-use.html"/>
-<link rel="next" href="output-overview-1.html"/>
+<link rel="next" href="output-name-conventions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -123,10 +119,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -147,7 +139,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Package &amp; Guide Overview</a></li>
 <li class="part"><span><b>I General Use</b></span></li>
 <li class="chapter" data-level="1" data-path="basic-use.html"><a href="basic-use.html"><i class="fa fa-check"></i><b>1</b> Basic Use</a></li>
-<<<<<<< HEAD
 <li class="part"><span><b>II Understanding <code>autovalid()</code> Output</b></span></li>
 <li class="chapter" data-level="2" data-path="output-overview.html"><a href="output-overview.html"><i class="fa fa-check"></i><b>2</b> Output Overview</a>
 <ul>
@@ -159,35 +150,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="output-overview.html"><a href="output-overview.html#raw_input"><i class="fa fa-check"></i><b>2.2</b> <code>raw_input</code></a></li>
 <li class="chapter" data-level="2.3" data-path="output-overview.html"><a href="output-overview.html#composite"><i class="fa fa-check"></i><b>2.3</b> <code>composite</code></a></li>
-=======
-<li class="part"><span><b>II Understanding <code>prep_data()</code> Output</b></span></li>
-<li class="chapter" data-level="2" data-path="output-overview.html"><a href="output-overview.html"><i class="fa fa-check"></i><b>2</b> Output Overview</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="output-overview.html"><a href="output-overview.html#pre_data"><i class="fa fa-check"></i><b>2.1</b> <code>pre_data</code></a></li>
-<li class="chapter" data-level="2.2" data-path="output-overview.html"><a href="output-overview.html#csv_data"><i class="fa fa-check"></i><b>2.2</b> <code>csv_data</code></a></li>
-<li class="chapter" data-level="2.3" data-path="output-overview.html"><a href="output-overview.html#aud_data"><i class="fa fa-check"></i><b>2.3</b> <code>aud_data</code></a></li>
-<li class="chapter" data-level="2.4" data-path="output-overview.html"><a href="output-overview.html#duplicated_interviews"><i class="fa fa-check"></i><b>2.4</b> <code>duplicated_interviews</code></a></li>
-<li class="chapter" data-level="2.5" data-path="output-overview.html"><a href="output-overview.html#nonvalid"><i class="fa fa-check"></i><b>2.5</b> <code>nonvalid</code></a></li>
-</ul></li>
-<li class="part"><span><b>III Understanding <code>autovalid()</code> Output</b></span></li>
-<li class="chapter" data-level="3" data-path="output-overview-1.html"><a href="output-overview-1.html"><i class="fa fa-check"></i><b>3</b> Output Overview</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="output-overview-1.html"><a href="output-overview-1.html#validation"><i class="fa fa-check"></i><b>3.1</b> <code>validation</code></a>
-<ul>
-<li class="chapter" data-level="3.1.1" data-path="output-overview-1.html"><a href="output-overview-1.html#responses"><i class="fa fa-check"></i><b>3.1.1</b> <code>responses</code></a></li>
-<li class="chapter" data-level="3.1.2" data-path="output-overview-1.html"><a href="output-overview-1.html#interviewers"><i class="fa fa-check"></i><b>3.1.2</b> <code>interviewers</code></a></li>
-<li class="chapter" data-level="3.1.3" data-path="output-overview-1.html"><a href="output-overview-1.html#supervisors"><i class="fa fa-check"></i><b>3.1.3</b> <code>supervisors</code></a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="output-overview-1.html"><a href="output-overview-1.html#raw_input"><i class="fa fa-check"></i><b>3.2</b> <code>raw_input</code></a></li>
-<li class="chapter" data-level="3.3" data-path="output-overview-1.html"><a href="output-overview-1.html#composite"><i class="fa fa-check"></i><b>3.3</b> <code>composite</code></a></li>
->>>>>>> b8f5662a210bc63d3bb882129dc4a5f7c798c253
 </ul></li>
 <li class="chapter" data-level="3" data-path="output-name-conventions.html"><a href="output-name-conventions.html"><i class="fa fa-check"></i><b>3</b> Output Name Conventions</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="output-name-conventions.html"><a href="output-name-conventions.html#check_-variables"><i class="fa fa-check"></i><b>3.1</b> <code>CHECK_</code> Variables</a></li>
 <li class="chapter" data-level="3.2" data-path="output-name-conventions.html"><a href="output-name-conventions.html#score_-variables"><i class="fa fa-check"></i><b>3.2</b> <code>SCORE_</code> Variables</a></li>
 </ul></li>
-<<<<<<< HEAD
 <li class="part"><span><b>III Validation Test Categories</b></span></li>
 <li class="chapter" data-level="4" data-path="timer-checks.html"><a href="timer-checks.html"><i class="fa fa-check"></i><b>4</b> Timer Checks</a>
 <ul>
@@ -204,15 +172,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="timer-checks.html"><a href="timer-checks.html#changing-defaults"><i class="fa fa-check"></i><b>4.5</b> Changing Defaults</a></li>
 <li class="chapter" data-level="4.6" data-path="timer-checks.html"><a href="timer-checks.html#result-columns"><i class="fa fa-check"></i><b>4.6</b> Result Columns</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="varaince-checks.html"><a href="varaince-checks.html"><i class="fa fa-check"></i><b>5</b> Variance Checks</a>
+<li class="chapter" data-level="5" data-path="missingness-checks.html"><a href="missingness-checks.html"><i class="fa fa-check"></i><b>5</b> Missingness Checks</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="varaince-checks.html"><a href="varaince-checks.html#score_vary"><i class="fa fa-check"></i><b>5.1</b> <code>SCORE_VARY</code></a></li>
-<li class="chapter" data-level="5.2" data-path="varaince-checks.html"><a href="varaince-checks.html#result-columns-1"><i class="fa fa-check"></i><b>5.2</b> Result Columns</a></li>
+<li class="chapter" data-level="5.1" data-path="missingness-checks.html"><a href="missingness-checks.html#changing-defualts"><i class="fa fa-check"></i><b>5.1</b> Changing Defualts</a></li>
+<li class="chapter" data-level="5.2" data-path="missingness-checks.html"><a href="missingness-checks.html#result-columns-1"><i class="fa fa-check"></i><b>5.2</b> Result Columns</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="missingness-checks.html"><a href="missingness-checks.html"><i class="fa fa-check"></i><b>6</b> Missingness Checks</a>
+<li class="chapter" data-level="6" data-path="varaince-checks.html"><a href="varaince-checks.html"><i class="fa fa-check"></i><b>6</b> Variance Checks</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="missingness-checks.html"><a href="missingness-checks.html#changing-defualts"><i class="fa fa-check"></i><b>6.1</b> Changing Defualts</a></li>
-<li class="chapter" data-level="6.2" data-path="missingness-checks.html"><a href="missingness-checks.html#result-columns-2"><i class="fa fa-check"></i><b>6.2</b> Result Columns</a></li>
+<li class="chapter" data-level="6.1" data-path="varaince-checks.html"><a href="varaince-checks.html#score_vary"><i class="fa fa-check"></i><b>6.1</b> <code>SCORE_VARY</code></a></li>
+<li class="chapter" data-level="6.2" data-path="varaince-checks.html"><a href="varaince-checks.html#result-columns-2"><i class="fa fa-check"></i><b>6.2</b> Result Columns</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="percent-match.html"><a href="percent-match.html"><i class="fa fa-check"></i><b>7</b> Percent Match Check</a>
 <ul>
@@ -229,67 +197,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.2" data-path="location-checks.html"><a href="location-checks.html#additional-parameters"><i class="fa fa-check"></i><b>8.3.2</b> Additional Parameters</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="location-checks.html"><a href="location-checks.html#result-columns-4"><i class="fa fa-check"></i><b>8.4</b> Result Columns</a></li>
-=======
-<li class="part"><span><b>IV Understanding <code>parse_for_major_flags()</code> Output</b></span></li>
-<li class="chapter" data-level="5" data-path="function-parameters.html"><a href="function-parameters.html"><i class="fa fa-check"></i><b>5</b> Function Parameters</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="function-parameters.html"><a href="function-parameters.html#timer_fail_count"><i class="fa fa-check"></i><b>5.1</b> <code>timer_fail_count</code></a></li>
-<li class="chapter" data-level="5.2" data-path="function-parameters.html"><a href="function-parameters.html#thresh_max_miss"><i class="fa fa-check"></i><b>5.2</b> <code>thresh_max_miss</code></a></li>
-<li class="chapter" data-level="5.3" data-path="function-parameters.html"><a href="function-parameters.html#thresh_max_pct"><i class="fa fa-check"></i><b>5.3</b> <code>thresh_max_pct</code></a></li>
-<li class="chapter" data-level="5.4" data-path="function-parameters.html"><a href="function-parameters.html#do_timer"><i class="fa fa-check"></i><b>5.4</b> <code>do_timer</code></a></li>
-<li class="chapter" data-level="5.5" data-path="function-parameters.html"><a href="function-parameters.html#do_variance"><i class="fa fa-check"></i><b>5.5</b> <code>do_variance</code></a></li>
-<li class="chapter" data-level="5.6" data-path="function-parameters.html"><a href="function-parameters.html#do_percent_match"><i class="fa fa-check"></i><b>5.6</b> <code>do_percent_match</code></a></li>
-<li class="chapter" data-level="5.7" data-path="function-parameters.html"><a href="function-parameters.html#do_missingness"><i class="fa fa-check"></i><b>5.7</b> <code>do_missingness</code></a></li>
-<li class="chapter" data-level="5.8" data-path="function-parameters.html"><a href="function-parameters.html#do_location"><i class="fa fa-check"></i><b>5.8</b> <code>do_location</code></a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="output-overview-2.html"><a href="output-overview-2.html"><i class="fa fa-check"></i><b>6</b> Output Overview</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="output-overview-2.html"><a href="output-overview-2.html#refield_report"><i class="fa fa-check"></i><b>6.1</b> <code>refield_report</code></a></li>
-<li class="chapter" data-level="6.2" data-path="output-overview-2.html"><a href="output-overview-2.html#refield_validation_results"><i class="fa fa-check"></i><b>6.2</b> <code>refield_validation_results</code></a></li>
-<li class="chapter" data-level="6.3" data-path="output-overview-2.html"><a href="output-overview-2.html#refield_interviews"><i class="fa fa-check"></i><b>6.3</b> <code>refield_interviews</code></a></li>
-</ul></li>
-<li class="part"><span><b>V Validation Test Categories</b></span></li>
-<li class="chapter" data-level="7" data-path="timer-checks.html"><a href="timer-checks.html"><i class="fa fa-check"></i><b>7</b> Timer Checks</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="timer-checks.html"><a href="timer-checks.html#understanding-the-four-timers"><i class="fa fa-check"></i><b>7.1</b> Understanding the Four Timers</a>
-<ul>
-<li class="chapter" data-level="7.1.1" data-path="timer-checks.html"><a href="timer-checks.html#timer1"><i class="fa fa-check"></i><b>7.1.1</b> <code>TIMER1</code></a></li>
-<li class="chapter" data-level="7.1.2" data-path="timer-checks.html"><a href="timer-checks.html#timer2"><i class="fa fa-check"></i><b>7.1.2</b> <code>TIMER2</code></a></li>
-<li class="chapter" data-level="7.1.3" data-path="timer-checks.html"><a href="timer-checks.html#timer3"><i class="fa fa-check"></i><b>7.1.3</b> <code>TIMER3</code></a></li>
-<li class="chapter" data-level="7.1.4" data-path="timer-checks.html"><a href="timer-checks.html#timer4"><i class="fa fa-check"></i><b>7.1.4</b> <code>TIMER4</code></a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="timer-checks.html"><a href="timer-checks.html#time-of-day"><i class="fa fa-check"></i><b>7.2</b> Time of Day</a></li>
-<li class="chapter" data-level="7.3" data-path="timer-checks.html"><a href="timer-checks.html#minmax-length"><i class="fa fa-check"></i><b>7.3</b> Min/Max Length</a></li>
-<li class="chapter" data-level="7.4" data-path="timer-checks.html"><a href="timer-checks.html#score_timer"><i class="fa fa-check"></i><b>7.4</b> <code>SCORE_TIMER</code></a></li>
-<li class="chapter" data-level="7.5" data-path="timer-checks.html"><a href="timer-checks.html#changing-defaults"><i class="fa fa-check"></i><b>7.5</b> Changing Defaults</a></li>
-<li class="chapter" data-level="7.6" data-path="timer-checks.html"><a href="timer-checks.html#result-columns"><i class="fa fa-check"></i><b>7.6</b> Result Columns</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="varaince-checks.html"><a href="varaince-checks.html"><i class="fa fa-check"></i><b>8</b> Variance Checks</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="varaince-checks.html"><a href="varaince-checks.html#score_vary"><i class="fa fa-check"></i><b>8.1</b> <code>SCORE_VARY</code></a></li>
-<li class="chapter" data-level="8.2" data-path="varaince-checks.html"><a href="varaince-checks.html#result-columns-1"><i class="fa fa-check"></i><b>8.2</b> Result Columns</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="missingness-checks.html"><a href="missingness-checks.html"><i class="fa fa-check"></i><b>9</b> Missingness Checks</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="missingness-checks.html"><a href="missingness-checks.html#changing-defualts"><i class="fa fa-check"></i><b>9.1</b> Changing Defualts</a></li>
-<li class="chapter" data-level="9.2" data-path="missingness-checks.html"><a href="missingness-checks.html#result-columns-2"><i class="fa fa-check"></i><b>9.2</b> Result Columns</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="percent-match.html"><a href="percent-match.html"><i class="fa fa-check"></i><b>10</b> Percent Match Check</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="percent-match.html"><a href="percent-match.html#changing-defaults-1"><i class="fa fa-check"></i><b>10.1</b> Changing Defaults</a></li>
-<li class="chapter" data-level="10.2" data-path="percent-match.html"><a href="percent-match.html#result-columns-3"><i class="fa fa-check"></i><b>10.2</b> Result Columns</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="location-checks.html"><a href="location-checks.html"><i class="fa fa-check"></i><b>11</b> Location Checks</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="location-checks.html"><a href="location-checks.html#always-included-checks"><i class="fa fa-check"></i><b>11.1</b> Always Included Checks</a></li>
-<li class="chapter" data-level="11.2" data-path="location-checks.html"><a href="location-checks.html#potential-additional-checks"><i class="fa fa-check"></i><b>11.2</b> Potential Additional Checks</a></li>
-<li class="chapter" data-level="11.3" data-path="location-checks.html"><a href="location-checks.html#changing-defaults-2"><i class="fa fa-check"></i><b>11.3</b> Changing Defaults</a>
-<ul>
-<li class="chapter" data-level="11.3.1" data-path="location-checks.html"><a href="location-checks.html#always"><i class="fa fa-check"></i><b>11.3.1</b> Always</a></li>
-<li class="chapter" data-level="11.3.2" data-path="location-checks.html"><a href="location-checks.html#additional-parameters"><i class="fa fa-check"></i><b>11.3.2</b> Additional Parameters</a></li>
-</ul></li>
-<li class="chapter" data-level="11.4" data-path="location-checks.html"><a href="location-checks.html#result-columns-4"><i class="fa fa-check"></i><b>11.4</b> Result Columns</a></li>
->>>>>>> b8f5662a210bc63d3bb882129dc4a5f7c798c253
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -312,22 +219,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="output-overview" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Output Overview<a href="output-overview.html#output-overview" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<<<<<<< HEAD
 <p>This chapter describes the output of the <code>autovalid()</code> function. The output of <code>autovalid()</code> is a slightly complex structure; it is a nested list. That is, the output is a list that contains a list. To help understand the output, all the elements are labeled.</p>
 <p>The overall output of <code>autovalid()</code> is a list of three objects called <strong><code>validation</code></strong>, <strong><code>raw_input</code></strong>, and <strong><code>composite</code></strong>. The latter two objects, <code>raw_input</code> and <code>composite</code>, are data frames. The object <strong><code>validation</code></strong> is a list of three more objects called <strong><code>responses</code></strong>, <strong><code>interviewers</code></strong>, and <strong><code>supervisors</code></strong>. Each of the objects in the <code>validation</code> list are data frames.</p>
-=======
-<p>This chapter describes the output of the <code>prep_data()</code> function. The output of <code>prep_data()</code> creates a table that is ready to use for the automatic validation.</p>
-<p>The overall output of <code>prep_data()</code> is a list of five objects called <strong><code>pre_data</code></strong>, <strong><code>csv_data</code></strong>, <strong><code>aud_data</code></strong>, <strong><code>duplicated_interviews</code></strong>, and <strong><code>nonvalid</code></strong>.</p>
->>>>>>> b8f5662a210bc63d3bb882129dc4a5f7c798c253
 <p>The output looks like this list:</p>
 <ul>
-<li><strong><code>pre_data</code></strong> (data frame)</li>
-<li><strong><code>csv_data</code></strong> (data frame)</li>
-<li><strong><code>aud_data</code></strong> (data frame)</li>
-<li><strong><code>duplicated_interviews</code></strong> (data frame)</li>
-<li><strong><code>nonvalid</code></strong> (list)</li>
+<li><strong><code>validation</code></strong> (list)
+<ul>
+<li><strong><code>responses</code></strong> (data frame)</li>
+<li><strong><code>interviewers</code></strong> (data frame)</li>
+<li><strong><code>supervisors</code></strong> (data frame)</li>
+</ul></li>
+<li><strong><code>raw_input</code></strong> (data frame)</li>
+<li><strong><code>composite</code></strong> (data frame)</li>
 </ul>
-<<<<<<< HEAD
 <p>The next sections look at each of the objects <code>autovalid()</code> returns.</p>
 <div id="validation" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> <code>validation</code><a href="output-overview.html#validation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -343,22 +247,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="supervisors" class="section level3 hasAnchor" number="2.1.3">
 <h3><span class="header-section-number">2.1.3</span> <code>supervisors</code><a href="output-overview.html#supervisors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>supervisors</code> data frame contains all the supervisor-level checks run by <code>autovalid()</code>, as well as supervisor ID, and group split the interview belonged to. Most of these checks are the mean of the interview-level checks aggregated by supervisor.</p>
-=======
-<p>The next sections look at each of the objects <code>prep_data()</code> returns.</p>
-<div id="pre_data" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> <code>pre_data</code><a href="output-overview.html#pre_data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <code>pre_data</code> data frame is the preprocessed data to undergo automatic validation. <code>pre_data</code> contains the organized and cleaned data after handling duplicates, collapsing randomized columns, and adding audit information.</p>
 </div>
-<div id="csv_data" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> <code>csv_data</code><a href="output-overview.html#csv_data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <code>csv_data</code> data frame formats the data to make it easier to export as a CSV file.</p>
->>>>>>> b8f5662a210bc63d3bb882129dc4a5f7c798c253
 </div>
-<div id="aud_data" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> <code>aud_data</code><a href="output-overview.html#aud_data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <code>aud_data</code> data frame processeses the audit file to review timers and enumerator behaviors.</p>
-</div>
-<<<<<<< HEAD
 <div id="raw_input" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> <code>raw_input</code><a href="output-overview.html#raw_input" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>raw_input</code> data frame is the condensed version of the raw data downloaded from KoboToolbox with non-valid interviews filtered out.</p>
@@ -368,35 +258,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="composite" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> <code>composite</code><a href="output-overview.html#composite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>composite</code> data frame is a data frame that contains all the interview responses from <code>raw_input</code> and all the interview-level tests from <code>validation$responses</code>. It is a result of joining the two data frame by <code>_UUID</code>.</p>
-=======
-<div id="duplicated_interviews" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> <code>duplicated_interviews</code><a href="output-overview.html#duplicated_interviews" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <code>duplicated_interviews</code> data frame contains information about duplicated interviews, specifically the duplicated UUIDs. The output can be a character string indicating the absence of duplicated UUIDs.</p>
-</div>
-<div id="nonvalid" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> <code>nonvalid</code><a href="output-overview.html#nonvalid" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <code>nonvalid</code> list contains different types of non-valid interviews. Each element of the list corresponds to a specific category of non-valid interviews.</p>
-<p>Categories of non-valid interviews:</p>
-<ul>
-<li><code>Unsuccessful_Knock</code></li>
-<li><code>Failed_Kish</code></li>
-<li><code>No_Consent</code></li>
-<li><code>Incomplete</code></li>
-</ul>
-
->>>>>>> b8f5662a210bc63d3bb882129dc4a5f7c798c253
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
 <a href="basic-use.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="output-overview-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="output-name-conventions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -427,7 +297,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/prep_data.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/understanding_output.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -435,7 +305,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/prep_data.Rmd",
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/understanding_output.Rmd",
 "text": null
 },
 "download": null,
